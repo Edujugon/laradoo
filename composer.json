@@ -1,0 +1,24 @@
+{
+    "name": "edujugon/skeleton-laravel-package",
+    "description": "Skeleton Laravel package. Initial base for your new awesome laravel package",
+    "keywords": ["skeleton","laravel","package"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Eduardo Marcos",
+            "email": "edujugon@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/support": "^5.3"
+    },
+    "require-dev": {
+      "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+      "psr-4": {
+        "Edujugon\\Skeleton\\": "src/"
+      }
+    },
+    "minimum-stability": "dev"
+}
