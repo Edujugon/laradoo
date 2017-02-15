@@ -28,9 +28,8 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['skeleton'] = $this->app->share(function($app)
-        {
-            return new Skeleton;
+        $this->app->singleton('skeleton', function ($app) {
+            return new Skeleton();
         });
     }
 }
