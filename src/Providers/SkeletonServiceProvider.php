@@ -28,7 +28,7 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('skeleton', function ($app) {
+        $this->app->bind(Skeleton::class, function ($app) {
             return new Skeleton();
         });
     }
