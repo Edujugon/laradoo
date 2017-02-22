@@ -9,6 +9,6 @@ class Skeleton extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return 'skeleton'; }
+    protected static function getFacadeAccessor() { return Skeleton::class; }
 
 }
