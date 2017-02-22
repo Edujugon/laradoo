@@ -18,7 +18,10 @@
     "autoload": {
       "psr-4": {
         "Edujugon\\Skeleton\\": "src/"
-      }
+      },
+      "files": [
+          "src/Support/helpers.php"
+      ]
     },
     "minimum-stability": "dev"
 }
