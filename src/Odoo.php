@@ -149,7 +149,7 @@ class Odoo
      * @param bool $withExceptions
      * @return mixed array|bool
      */
-    public function can(string $permission, string $model, bool $withExceptions = false)
+    public function can($permission, $model, $withExceptions = false)
     {
         if (!is_array($permission))
             $permission = [$permission];
@@ -170,7 +170,7 @@ class Odoo
      * @param $value
      * @return $this
      */
-    public function where(string $field, string $operator, $value = null)
+    public function where($field,$operator, $value = null)
     {
         if (func_num_args() === 2) {
             $new = [$field, '=', $operator];
@@ -194,7 +194,7 @@ class Odoo
      * @param int $offset
      * @return Odoo $this
      */
-    public function limit(int $limit, int $offset = 0)
+    public function limit($limit,$offset = 0)
     {
         $this->limit['value'] = $limit;
         $this->offset['value'] = $offset;
@@ -606,7 +606,7 @@ class Odoo
      * @return string
      * @throws OdooException OdooException
      */
-    private function setApiEndPoint(string $endPoint)
+    private function setApiEndPoint($endPoint)
     {
         if (empty($this->host))
             throw new OdooException('You must provide the odoo host by host setter method');
@@ -704,7 +704,7 @@ class Odoo
      * @param string $key
      * @return mixed
      */
-    private function makeResponse(Collection $result, $key = null)
+    private function makeResponse($result, $key = null)
     {
         if (array_key_exists('faultCode', $result->toArray()))
             return $result['faultCode'];
