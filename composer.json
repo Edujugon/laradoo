@@ -1,7 +1,7 @@
 {
-    "name": "edujugon/skeleton-laravel-package",
-    "description": "Skeleton Laravel package. Initial base for your new awesome laravel package",
-    "keywords": ["skeleton","laravel","package"],
+    "name": "edujugon/laradoo",
+    "description": "Odoo ERP API for Laravel",
+    "keywords": ["odoo","laravel","erp","package"],
     "license": "MIT",
     "authors": [
         {
@@ -9,19 +9,20 @@
             "email": "edujugon@gmail.com"
         }
     ],
-    "require": {
-        "illuminate/support": "^5.1"
-    },
-    "require-dev": {
-      "phpunit/phpunit": "~5.0"
-    },
     "autoload": {
       "psr-4": {
-        "Edujugon\\Skeleton\\": "src/"
+        "Edujugon\\Laradoo\\": "src/"
       },
       "files": [
           "src/Support/helpers.php"
-      ]
+      ],
+      "classmap": ["src/ripcord"]
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/support": "^5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.1"
+    }
 }
