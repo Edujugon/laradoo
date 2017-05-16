@@ -1,10 +1,10 @@
 <?php
 /**
- * Project: skeleton-laravel-package.
+ * Project: laradoo.
  * User: Edujugon
  * Email: edujugon@gmail.com
- * Date: 22/2/17
- * Time: 13:40
+ * Date: 10/5/17
+ * Time: 16:04
  */
 
 /**
@@ -14,11 +14,9 @@
  */
 function eConfig()
 {
-    if(function_exists('config_path'))
-    {
-        if(file_exists(config_path('sekeleton.php')))
-        {
-            $configuration = include(config_path('sekeleton.php'));
+    if (function_exists('config_path')) {
+        if (file_exists(config_path('laradoo.php'))) {
+            $configuration = include(config_path('laradoo.php'));
 
             return $configuration;
         }
@@ -27,4 +25,25 @@ function eConfig()
     $configuration = include(__DIR__ . '/../Config/config.php');
 
     return $configuration;
+}
+
+/**
+ * Add Character to a given string.
+ * By default is concatenated either prefix and suffix.
+ *
+ * @param $text
+ * @param $char
+ * @param bool $prefix
+ * @param bool $suffix
+ * @return string
+ */
+function eAddCharacter($text, $char, $prefix = true, $suffix = true)
+{
+    if ($prefix && substr($text, 0, 1) !== $char)
+        $text = $char . $text;
+
+    if ($suffix && substr($text, -1, 1) !== $char)
+        $text = $text . $char;
+
+    return $text;
 }

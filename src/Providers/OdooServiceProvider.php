@@ -1,11 +1,11 @@
 <?php
 
-namespace Edujugon\Skeleton\Providers;
+namespace Edujugon\Laradoo\Providers;
 
-use Edujugon\Skeleton\Skeleton;
+use Edujugon\Laradoo\Odoo;
 use Illuminate\Support\ServiceProvider;
 
-class SkeletonServiceProvider extends ServiceProvider
+class OdooServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -14,7 +14,7 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $config_path = function_exists('config_path') ? config_path('skeleton.php') : 'skeleton.php';
+        $config_path = function_exists('config_path') ? config_path('laradoo.php') : 'laradoo.php';
 
         $this->publishes([
             __DIR__.'/../Config/config.php' => $config_path,
@@ -28,8 +28,8 @@ class SkeletonServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(Skeleton::class, function ($app) {
-            return new Skeleton();
+        $this->app->bind(Odoo::class, function ($app) {
+            return new Odoo();
         });
     }
 }

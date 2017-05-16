@@ -1,20 +1,8 @@
-# Skeleton Laravel Package
+# Laradoo
 
-Initial base for your new awesome laravel package.
+Odoo ERP API for Laravel. [odoo.com](https://www.odoo.com)
 
-## Clone this repository
+##  HOW-TO Documentation
 
-type in your console
-```
-git clone https://github.com/Edujugon/skeleton-laravel-package.git Your-Package-Name
-```
+[Installation and Usage samples](https://edujugon.github.io/laradoo/)
 
-## Recommended steps:
-
-* Change psr-4 name in composer.json
-
-* Change namespaces to your own in all files inside src folder
-
-* Update your readme file with your package guidelines.
-
-* Create your own tests in test folder.
