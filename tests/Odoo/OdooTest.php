@@ -34,7 +34,8 @@ class OdooTest extends TestCase
     protected function setDemoCredentials()
     {
 
-        $info = $this->odoo->getRipcord()::client('https://demo.odoo.com/start')->start();
+        $library = $this->odoo->getRipcord();
+        $info = $library::client('https://demo.odoo.com/start')->start();
 
         list($this->host, $this->db, $this->username, $this->password) =
             array($info['host'], $info['database'], $info['user'], $info['password']);
