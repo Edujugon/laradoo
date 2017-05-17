@@ -1,5 +1,12 @@
 #   ChangeLog
 
+## V1.0.2
+
+### Fixes
+
+fieldsOf method now works with the second arguments.
+You can retrieve either all or only those attributes you are interested in. 
+
 ## V1.0.1
 
 ### New
