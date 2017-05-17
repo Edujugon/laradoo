@@ -141,9 +141,19 @@ For Deleting records we have the `delete` method:
 $result = $odoo->where('name', 'Jonh Odoo')
             ->delete('res.partner');
 ```
+> Notice that before calling `delete` method you have to use `where`.
 
 You can also remove records by ids like follows:
 
 ```
 $result = $odoo->deleteById('res.partner',$ids);
 ```
+
+You can also update any record of your ERP:
+
+```
+$updated = $odoo->where('name', 'John Odoo')
+            ->update('res.partner',['name' => 'John Odoo Odoo','email' => 'Johndoe@odoo.com']);
+```
+
+Be aware that all `delete` and `update` methods always returns `true` except if there was an error.

@@ -99,16 +99,7 @@ class Odoo
         // Set Ripcord Instance
         $this->ripcord = ripcord::class;
 
-        //Load config data
-        $config = eConfig();
-
-        //Set config data
-        $this->suffix = array_key_exists('api-suffix', $config) ? eAddCharacter($config['api-suffix'], '/') : $this->suffix;
-        $this->host = array_key_exists('host', $config) ? $config['host'] : $this->host;
-        $this->db = array_key_exists('db', $config) ? $config['db'] : $this->db;
-        $this->username = array_key_exists('username', $config) ? $config['username'] : $this->username;
-        $this->password = array_key_exists('password', $config) ? $config['password'] : $this->password;
-
+        $this->loadConfigData();
     }
 
     /**
@@ -131,11 +122,11 @@ class Odoo
     public function connect($db = null, $username = null, $password = null, array $array = [])
     {
 
-        $db = $db ?: $this->db;
-        $username = $username ?: $this->username;
-        $password = $password ?: $this->password;
+        $this->db = $db ?: $this->db;
+        $this->username = $username ?: $this->username;
+        $this->password = $password ?: $this->password;
 
-        $this->auth($db, $username, $password, $array);
+        $this->auth($this->db, $this->username, $this->password, $array);
 
         return $this;
     }
@@ -147,18 +138,17 @@ class Odoo
      * @param string $permission ('read','write','create','unlink')
      * @param string $model
      * @param bool $withExceptions
-     * @return mixed array|bool
+     * @return Collection|string|true Collection |string ( error )| bool (true)
      */
     public function can(string $permission, string $model, bool $withExceptions = false)
     {
-        if (!is_array($permission))
-            $permission = [$permission];
+        if (!is_array($permission)) $permission = [$permission];
 
         $can = collect($this->object->execute_kw($this->db, $this->uid, $this->password,
             $model, 'check_access_rights',
             $permission, array('raise_exception' => $withExceptions)));
 
-        return $this->makeResponse($can, 0);
+        return $this->makeResponse($can, 0, 'boolean');
     }
 
 
@@ -222,7 +212,7 @@ class Odoo
      * If no condition, all are retrieved.
      *
      * @param string $model Model name
-     * @return \Illuminate\Support\Collection List of ids.
+     * @return Collection List of ids.
      * @throws OdooException
      */
     public function search($model)
@@ -296,16 +286,19 @@ class Odoo
 
     /**
      * Retrieve the Odoo version.
+     * If key passed it returns the key value of the collection
      * No need authentication
+     *
+     * @param string $key
      * @return Collection
      */
-    public function version()
+    public function version($key = null)
     {
         $urlCommon = $this->setApiEndPoint($this->commonEndPoint);
 
         $version = collect($this->getClient($urlCommon)->version());
 
-        return $this->makeResponse($version);
+        return $this->makeResponse($version, $key);
     }
 
     /**
@@ -332,7 +325,7 @@ class Odoo
      *
      * @param $model
      * @param array $data
-     * @return Collection
+     * @return integer ID of the new record
      */
     public function create($model, array $data)
     {
@@ -347,21 +340,45 @@ class Odoo
     }
 
     /**
-     * Remove a record by Id or Ids.
+     * Update one or more records based on a previous passed condition.
      *
      * @param $model
-     * @param integer|array $ids
-     * @return Collection|bool
+     * @param array $data
+     * @return true|string Always true except an error (string).
+     * @throws OdooException
      */
-    public function deleteById($model, $ids)
+    public function update($model, array $data)
     {
-        $ids = is_array($ids) ? $ids : [$ids];
+        if ($this->hasNotProvided($this->condition))
+            return "To prevent updating all records you must provide at least one condition. Using where method would solve this.";
+
+        $method = 'write';
+
+        $this->validate($method, $model);
+
+        $ids = $this->search($model);
+
+        $result = $this->call($model, $method, [$ids->toArray(), $data]);
+
+        return $this->makeResponse($result, 0);
+    }
+
+    /**
+     * Remove a record by Id or Ids.
+     *
+     * @param string $model
+     * @param array|Collection|int $id
+     * @return true|string Always true except an error (string).
+     */
+    public function deleteById($model, $id)
+    {
+        if ($id instanceof Collection) $id = $id->toArray();
 
         $method = 'unlink';
 
         $this->validate($method, $model);
 
-        $result = $this->call($model, $method, $ids);
+        $result = $this->call($model, $method, [$id]);
 
         return $this->makeResponse($result, 0);
     }
@@ -369,25 +386,19 @@ class Odoo
     /**
      * Remove record/records based on conditions.
      *
-     * @param $model
-     * @return bool|Collection|string
+     * @param string $model
+     * @return true|string Always true except an error (string).
      * @throws OdooException
      */
     public function delete($model)
     {
+        if ($this->hasNotProvided($this->condition))
+            return "To prevent updating all records you must provide at least one condition. Using where method would solve this.";
+
         // Get ids.
         $ids = $this->search($model);
 
-        if ($ids->isEmpty())
-            return "There isn't any record based on your condition";
-
-        $method = 'unlink';
-
-        $this->validate($method, $model);
-
-        $result = $this->call($model, $method, $ids->count() > 1 ? [$ids->toArray()] : $ids->toArray());
-
-        return $this->makeResponse($result, 0);
+        return $this->deleteById($model, $ids);
     }
 
     /**
@@ -690,7 +701,7 @@ class Odoo
      */
     private function validate($method, $model)
     {
-        if (!$this->can($method, $model))
+        if ($this->can($method, $model) !== true)
             throw new OdooException("You don't have '$method' permission in '$model'");
     }
 
@@ -702,16 +713,46 @@ class Odoo
      *
      * @param Collection $result
      * @param string $key
+     * @param null $cast Cast returned data based on this param.
      * @return mixed
      */
-    private function makeResponse(Collection $result, $key = null)
+    private function makeResponse(Collection $result, $key = null, $cast = null)
     {
         if (array_key_exists('faultCode', $result->toArray()))
             return $result['faultCode'];
 
         if (!is_null($key) && array_key_exists($key, $result->toArray()))
-            return $result->get($key);
+            $result = $result->get($key);
+
+        if ($cast) settype($result, $cast);
 
         return $result;
+    }
+
+    /**
+     * Load data from config file.
+     */
+    private function loadConfigData()
+    {
+        //Load config data
+        $config = eConfig();
+
+        //Set config data
+        $this->suffix = array_key_exists('api-suffix', $config) ? eAddCharacter($config['api-suffix'], '/') : $this->suffix;
+        $this->host = array_key_exists('host', $config) ? $config['host'] : $this->host;
+        $this->db = array_key_exists('db', $config) ? $config['db'] : $this->db;
+        $this->username = array_key_exists('username', $config) ? $config['username'] : $this->username;
+        $this->password = array_key_exists('password', $config) ? $config['password'] : $this->password;
+    }
+
+
+    /**
+     * Check if user has provided a passed parameter.
+     * @param $param
+     * @return bool
+     */
+    private function hasNotProvided($param)
+    {
+        return $param['default'] === $param['value'];
     }
 }
