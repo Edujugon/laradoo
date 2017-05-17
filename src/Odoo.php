@@ -304,8 +304,12 @@ class Odoo
     /**
      * Retrieve all model structure fields.
      *
+     * the most interesting items for a human user are string (the field's label),
+     * help (a help text if available) and type (to know which values to expect,
+     * or to send when updating a record)
+     *
      * @param $model
-     * @param array $attributes
+     * @param array $attributes Most common attributes: 'string', 'help', 'type'
      * @return Collection
      */
     public function fieldsOf($model, $attributes = [])
@@ -314,7 +318,7 @@ class Odoo
 
         $this->validate($method, $model);
 
-        $result = $this->call($model, $method, [], $attributes);
+        $result = $this->call($model, $method, [], ['attributes' => $attributes]);
 
 
         return $this->makeResponse($result);
