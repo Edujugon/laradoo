@@ -1,5 +1,7 @@
 # Laradoo
 
+<img src="https://raw.githubusercontent.com/Edujugon/laradoo/master/docs/assets/laradoo.png">
+
 Odoo ERP API for Laravel. [odoo.com](https://www.odoo.com)
 
 ## Installation
