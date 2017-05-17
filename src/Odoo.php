@@ -112,9 +112,9 @@ class Odoo
      * Connect with Odoo.
      * Set the uid
      *
-     * @param null $db
-     * @param null $username
-     * @param null $password
+     * @param string $db
+     * @param string $username
+     * @param string $password
      * @param array $array
      * @return $this
      * @throws OdooException
@@ -140,7 +140,7 @@ class Odoo
      * @param bool $withExceptions
      * @return Collection|string|true Collection |string ( error )| bool (true)
      */
-    public function can(string $permission, string $model, bool $withExceptions = false)
+    public function can($permission, $model, $withExceptions = false)
     {
         if (!is_array($permission)) $permission = [$permission];
 
@@ -157,10 +157,10 @@ class Odoo
      *
      * @param string $field
      * @param string $operator
-     * @param $value
+     * @param string $value
      * @return $this
      */
-    public function where(string $field, string $operator, $value = null)
+    public function where($field, $operator, $value = null)
     {
         if (func_num_args() === 2) {
             $new = [$field, '=', $operator];
@@ -184,7 +184,7 @@ class Odoo
      * @param int $offset
      * @return Odoo $this
      */
-    public function limit(int $limit, int $offset = 0)
+    public function limit($limit, $offset = 0)
     {
         $this->limit['value'] = $limit;
         $this->offset['value'] = $offset;
@@ -195,7 +195,7 @@ class Odoo
     /**
      * Set fields to be retrieved.
      *
-     * @param $fields
+     * @param array $fields
      * @return $this
      */
     public function fields($fields)
@@ -212,7 +212,7 @@ class Odoo
      * If no condition, all are retrieved.
      *
      * @param string $model Model name
-     * @return Collection List of ids.
+     * @return Collection List of ids
      * @throws OdooException
      */
     public function search($model)
@@ -238,7 +238,7 @@ class Odoo
      * Count the items in a model based on the condition.
      * If no condition, count all.
      *
-     * @param $model
+     * @param string $model
      * @return integer
      * @throws OdooException
      */
@@ -263,7 +263,7 @@ class Odoo
      * Retrieve model's data
      *
      * @param string $model
-     * @return \Illuminate\Support\Collection
+     * @return Collection
      */
     public function get($model)
     {
@@ -290,7 +290,7 @@ class Odoo
      * No need authentication
      *
      * @param string $key
-     * @return Collection
+     * @return Collection|string
      */
     public function version($key = null)
     {
@@ -308,7 +308,7 @@ class Odoo
      * help (a help text if available) and type (to know which values to expect,
      * or to send when updating a record)
      *
-     * @param $model
+     * @param string $model
      * @param array $attributes Most common attributes: 'string', 'help', 'type'
      * @return Collection
      */
@@ -327,7 +327,7 @@ class Odoo
     /**
      * Create a single record and return its database identifier.
      *
-     * @param $model
+     * @param string $model
      * @param array $data
      * @return integer ID of the new record
      */
@@ -346,7 +346,7 @@ class Odoo
     /**
      * Update one or more records based on a previous passed condition.
      *
-     * @param $model
+     * @param string $model
      * @param array $data
      * @return true|string Always true except an error (string).
      * @throws OdooException
@@ -411,7 +411,7 @@ class Odoo
      * @param $params
      * @return Collection
      */
-    function call($params)
+    public function call($params)
     {
         $args = array_merge(
             [$this->db, $this->uid, $this->password],
@@ -441,7 +441,7 @@ class Odoo
      * @param string $url Odoo API entry point.
      * @return Odoo $this
      */
-    function host($url)
+    public function host($url)
     {
         $this->host = $url;
 
@@ -454,7 +454,7 @@ class Odoo
      * @param string $username
      * @return Odoo $this
      */
-    function username($username)
+    public function username($username)
     {
         $this->username = $username;
 
@@ -467,7 +467,7 @@ class Odoo
      * @param $password
      * @return Odoo $this
      */
-    function password($password)
+    public function password($password)
     {
         $this->password = $password;
 
@@ -480,7 +480,7 @@ class Odoo
      * @param string $name
      * @return Odoo $this
      */
-    function db($name)
+    public function db($name)
     {
         $this->db = $name;
 
@@ -493,7 +493,7 @@ class Odoo
      * @param $name
      * @return $this
      */
-    function apiSuffix($name)
+    public function apiSuffix($name)
     {
         $this->suffix = $name;
 
@@ -517,7 +517,7 @@ class Odoo
      *
      * @return string
      */
-    function getRipcord()
+    public function getRipcord()
     {
         return $this->ripcord;
     }
@@ -527,7 +527,7 @@ class Odoo
      *
      * @return mixed
      */
-    function getUid()
+    public function getUid()
     {
         return $this->uid;
     }
@@ -537,7 +537,7 @@ class Odoo
      *
      * @return string
      */
-    function getHost()
+    public function getHost()
     {
         return $this->host;
     }
@@ -547,7 +547,7 @@ class Odoo
      *
      * @return string
      */
-    function getDb()
+    public function getDb()
     {
         return $this->db;
     }
@@ -556,7 +556,7 @@ class Odoo
      * Get username
      * @return mixed
      */
-    function getUserName()
+    public function getUserName()
     {
         return $this->username;
     }
@@ -565,7 +565,7 @@ class Odoo
      * Get password
      * @return mixed
      */
-    function getPassword()
+    public function getPassword()
     {
         return $this->password;
     }
