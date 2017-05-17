@@ -144,8 +144,18 @@ class OdooTest extends TestCase
     /** @test */
     public function get_fields_of_partner_model()
     {
+        $fields = $this->odoo->fieldsOf('res.partner');
+
+        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$fields);
+        $this->assertArrayNotHasKey('faultCode',$fields);
+    }
+
+    /** @test */
+    public function get_specific_fields_of_a_model()
+    {
         $fields = $this->odoo->fieldsOf('res.partner',['string', 'help', 'type']);
-        dd($fields);
+
+        $this->assertArrayHasKey('string',$fields->get('name'));
         $this->assertInstanceOf(\Illuminate\Support\Collection::class,$fields);
         $this->assertArrayNotHasKey('faultCode',$fields);
     }
