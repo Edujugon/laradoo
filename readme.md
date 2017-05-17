@@ -149,7 +149,7 @@ You can also remove records by ids like follows:
 $result = $odoo->deleteById('res.partner',$ids);
 ```
 
-You can also update any record of your ERP:
+Update any record of your ERP:
 
 ```
 $updated = $odoo->where('name', 'John Odoo')
