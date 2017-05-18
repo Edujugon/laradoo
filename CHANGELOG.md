@@ -1,5 +1,11 @@
 #   ChangeLog
 
+## V1.0.3
+
+### Features
+
+Added check when setting host and suffix API url.
+
 ## V1.0.2
 
 ### Fixes
