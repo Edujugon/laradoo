@@ -1,27 +1,33 @@
 #   ChangeLog
 
+## V1.0.4
+
+#### Fixes
+
+Facade now returns the correct name pointing to Odoo Class.
+
 ## V1.0.3
 
-### Features
+#### Features
 
 Added check when setting host and suffix API url.
 
 ## V1.0.2
 
-### Fixes
+#### Fixes
 
 fieldsOf method now works with the second arguments.
 You can retrieve either all or only those attributes you are interested in. 
 
 ## V1.0.1
 
-### New
+#### New
 
-#### Update method
+##### Update method
 
 Now you can update fields of a model using `update` method.
 
-### Features
+#### Features
 
 * `version` method accepts a new parameters which is a key to be taken from the collection which was going to be returned.
 

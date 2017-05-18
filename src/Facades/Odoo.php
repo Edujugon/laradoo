@@ -9,6 +9,6 @@ class Odoo extends Facade {
      *
      * @return string
      */
-    protected static function getFacadeAccessor() { return Odoo::class; }
+    protected static function getFacadeAccessor() { return \Edujugon\Laradoo\Odoo::class; }
 
 }
