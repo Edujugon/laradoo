@@ -24,7 +24,7 @@ class OdooTest extends TestCase
 
         $this->odoo = new Odoo();
 
-        $this->setDemoCredentials();
+        //$this->setDemoCredentials();
         $this->createOdooInstance();
     }
 
@@ -96,6 +96,7 @@ class OdooTest extends TestCase
     {
         $ids = $this->odoo
             ->where('customer', '=', true)
+            ->limit(10)
             ->search('res.partner');
 
         $this->assertArrayNotHasKey('faultCode',$ids);
@@ -133,7 +134,6 @@ class OdooTest extends TestCase
             ->fields('name')
             ->get('res.partner');
 
-
         $this->assertFalse($models->has('email'));
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $models);
         $this->assertArrayNotHasKey('faultCode',$models);
@@ -146,16 +146,6 @@ class OdooTest extends TestCase
     {
         $fields = $this->odoo->fieldsOf('res.partner');
 
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$fields);
-        $this->assertArrayNotHasKey('faultCode',$fields);
-    }
-
-    /** @test */
-    public function get_specific_fields_of_a_model()
-    {
-        $fields = $this->odoo->fieldsOf('res.partner',['string', 'help', 'type']);
-
-        $this->assertArrayHasKey('string',$fields->get('name'));
         $this->assertInstanceOf(\Illuminate\Support\Collection::class,$fields);
         $this->assertArrayNotHasKey('faultCode',$fields);
     }

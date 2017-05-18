@@ -128,13 +128,6 @@ If not sure about what fields a model has, you can retrieve the model structure 
 $structure = $odoo->fieldsOf('res.partner');
 ```
 
-If the above method returns too much fields and want to be more focused on a few of them, you can do like follows:
-
-```
-$structure = $odoo->fieldsOf('res.partner',['string', 'help', 'type']);
-```
->The most interesting items for a human user are string (the field's label), help (a help text if available) and type (to know which values to expect, or to send when updating a record)
-
 Till now we have only retrieved data from the ERP but you can also Create and Delete records.
 
 In order to create a new record just call `create` method as follows:

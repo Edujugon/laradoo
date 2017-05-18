@@ -219,8 +219,6 @@ class Odoo
     {
         $method = 'search';
 
-        $this->validate($method, $model);
-
         $condition = $this->condition['value'];
 
         $params = $this->buildParams('limit', 'offset');
@@ -246,8 +244,6 @@ class Odoo
     {
         $method = 'search_count';
 
-        $this->validate($method, $model);
-
         $condition = $this->condition['value'];
 
         $result = $this->call($model, $method, $condition);
@@ -268,8 +264,6 @@ class Odoo
     public function get($model)
     {
         $method = 'read';
-
-        $this->validate($method, $model);
 
         $ids = $this->search($model)->toArray();
 
@@ -309,16 +303,13 @@ class Odoo
      * or to send when updating a record)
      *
      * @param string $model
-     * @param array $attributes Most common attributes: 'string', 'help', 'type'
      * @return Collection
      */
-    public function fieldsOf($model, $attributes = [])
+    public function fieldsOf($model)
     {
         $method = 'fields_get';
 
-        $this->validate($method, $model);
-
-        $result = $this->call($model, $method, [], ['attributes' => $attributes]);
+        $result = $this->call($model, $method, []);
 
 
         return $this->makeResponse($result);
@@ -334,8 +325,6 @@ class Odoo
     public function create($model, array $data)
     {
         $method = 'create';
-
-        $this->validate($method, $model);
 
         $result = $this->call($model, $method, [$data]);
 
@@ -358,8 +347,6 @@ class Odoo
 
         $method = 'write';
 
-        $this->validate($method, $model);
-
         $ids = $this->search($model);
 
         $result = $this->call($model, $method, [$ids->toArray(), $data]);
@@ -379,8 +366,6 @@ class Odoo
         if ($id instanceof Collection) $id = $id->toArray();
 
         $method = 'unlink';
-
-        $this->validate($method, $model);
 
         $result = $this->call($model, $method, [$id]);
 
@@ -694,19 +679,6 @@ class Odoo
     private function getClient($endPoint)
     {
         return ripcord::client($endPoint);
-    }
-
-    /**
-     * Validate permission.
-     *
-     * @param $method
-     * @param $model
-     * @throws OdooException
-     */
-    private function validate($method, $model)
-    {
-        if ($this->can($method, $model) !== true)
-            throw new OdooException("You don't have '$method' permission in '$model'");
     }
 
     /**
