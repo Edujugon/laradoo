@@ -24,7 +24,7 @@ class OdooTest extends TestCase
 
         $this->odoo = new Odoo();
 
-        //$this->setDemoCredentials();
+        $this->setDemoCredentials();
         $this->createOdooInstance();
     }
 
