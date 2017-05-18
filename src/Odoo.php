@@ -398,6 +398,9 @@ class Odoo
      */
     public function call($params)
     {
+        //Prevent user forgetting connect with the ERP.
+        $this->autoConnect();
+
         $args = array_merge(
             [$this->db, $this->uid, $this->password],
             func_get_args()
@@ -734,5 +737,14 @@ class Odoo
     private function hasNotProvided($param)
     {
         return $param['default'] === $param['value'];
+    }
+
+    /**
+     * Auto connect with the ERP if there isn't uid.
+     */
+    private function autoConnect()
+    {
+        if (is_null($this->uid))
+            $this->connect();
     }
 }

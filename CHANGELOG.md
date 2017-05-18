@@ -1,5 +1,12 @@
 #   ChangeLog
 
+## V1.0.6
+
+#### New
+
+The package checks if user has ran `connect` method. if not and it's required to be authenticated, it will do it automatically.
+
+
 ## V1.0.5
 
 #### Change
