@@ -260,16 +260,22 @@ class Odoo
      *
      * @param string $model
      * @return Collection
+     * @throws OdooException
      */
     public function get($model)
     {
         $method = 'read';
 
-        $ids = $this->search($model)->toArray();
+        $ids = $this->search($model);
+
+        //If string we it can't continue for retrieving models
+        //Throw exception about what happened.
+        if(is_string($ids))
+            throw new OdooException($ids);
 
         $params = $this->buildParams('fields');
 
-        $result = $this->call($model, $method, [$ids], $params);
+        $result = $this->call($model, $method, [$ids->toArray()], $params);
 
         //Reset params for future queries.
         $this->resetParams('fields');
@@ -349,6 +355,11 @@ class Odoo
 
         $ids = $this->search($model);
 
+        //If string we it can't continue for retrieving models
+        //Throw exception about what happened.
+        if(is_string($ids))
+            throw new OdooException($ids);
+
         $result = $this->call($model, $method, [$ids->toArray(), $data]);
 
         return $this->makeResponse($result, 0);
@@ -384,8 +395,12 @@ class Odoo
         if ($this->hasNotProvided($this->condition))
             return "To prevent updating all records you must provide at least one condition. Using where method would solve this.";
 
-        // Get ids.
         $ids = $this->search($model);
+
+        //If string we it can't continue for retrieving models
+        //Throw exception about what happened.
+        if(is_string($ids))
+            throw new OdooException($ids);
 
         return $this->deleteById($model, $ids);
     }
