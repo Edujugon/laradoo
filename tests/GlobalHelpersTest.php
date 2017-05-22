@@ -16,6 +16,6 @@ class GlobalHelpersTest extends TestCase
     {
         $text = 'http://myurl.com/';
 
-        $this->assertEquals('http://myurl.com',eRemoveCharacter($text,'/'));
+        $this->assertEquals('http://myurl.com',laradooRemoveCharacter($text,'/'));
     }
 }

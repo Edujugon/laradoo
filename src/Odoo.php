@@ -729,14 +729,14 @@ class Odoo
     private function loadConfigData()
     {
         //Load config data
-        $config = eConfig();
+        $config = laradooConfig();
 
 
         $this->suffix = array_key_exists('api-suffix', $config) ? $config['api-suffix'] : $this->suffix;
-        $this->suffix = eAddCharacter($this->suffix, '/');
+        $this->suffix = laradooAddCharacter($this->suffix, '/');
 
         $this->host = array_key_exists('host', $config) ? $config['host'] : $this->host;
-        $this->host = eRemoveCharacter($this->host, '/');
+        $this->host = laradooRemoveCharacter($this->host, '/');
 
         $this->db = array_key_exists('db', $config) ? $config['db'] : $this->db;
         $this->username = array_key_exists('username', $config) ? $config['username'] : $this->username;
