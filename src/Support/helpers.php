@@ -12,7 +12,7 @@
  *
  * @return array
  */
-function eConfig()
+function laradooConfig()
 {
     if (function_exists('config_path')) {
         if (file_exists(config_path('laradoo.php'))) {
@@ -37,7 +37,7 @@ function eConfig()
  * @param bool $suffix
  * @return string
  */
-function eAddCharacter($text, $char, $prefix = true, $suffix = true)
+function laradooAddCharacter($text, $char, $prefix = true, $suffix = true)
 {
     if ($prefix && substr($text, 0, 1) !== $char)
         $text = $char . $text;
@@ -58,7 +58,7 @@ function eAddCharacter($text, $char, $prefix = true, $suffix = true)
  * @param bool $suffix
  * @return string
  */
-function eRemoveCharacter($text, $char, $prefix = true, $suffix = true)
+function laradooRemoveCharacter($text, $char, $prefix = true, $suffix = true)
 {
     if ($prefix && substr($text, 0, 1) === $char)
         $text = substr($text,1);
