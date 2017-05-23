@@ -355,7 +355,7 @@ class Odoo
 
         $ids = $this->search($model);
 
-        //If string we it can't continue for retrieving models
+        //If string, it can't continue for retrieving models
         //Throw exception about what happened.
         if(is_string($ids))
             throw new OdooException($ids);
