@@ -1,5 +1,12 @@
 #   ChangeLog
 
+## V1.0.8
+
+#### Fix
+
+Renamed global functions name to prevent issues when working with other packages.
+
+
 ## V1.0.7
 
 #### Enhancement
