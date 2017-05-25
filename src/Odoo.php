@@ -44,6 +44,9 @@ class Odoo
     protected $uid;
 
 
+    /**
+     * DB Credentials
+     */
     protected $db;
     protected $host;
     protected $username;
@@ -72,26 +75,14 @@ class Odoo
      */
 
     //Condition for the query.
-    protected $condition = [
-        'default' => [[]],
-        'value' => [[]]
-    ];
+    protected $condition;
 
     //offset and limit parameters are available to only retrieve a subset of all matched records
-    protected $offset = [
-        'default' => 0,
-        'value' => 0
-    ];
-    protected $limit = [
-        'default' => null,
-        'value' => null
-    ];
+    protected $offset;
+    protected $limit;
 
     // fields to be requested.
-    protected $fields = [
-        'default' => [],
-        'value' => []
-    ];
+    protected $fields;
 
 
     function __construct()
@@ -162,15 +153,12 @@ class Odoo
      */
     public function where($field, $operator, $value = null)
     {
-        if (func_num_args() === 2) {
+        if (func_num_args() === 2)
             $new = [$field, '=', $operator];
-        } else
+        else
             $new = func_get_args();
 
-        if (empty($this->condition['value']))
-            $this->condition['value'] = $this->odooArrayFormat($new);
-        else
-            $this->condition['value'][0][] = $new;
+        $this->condition[0][] = $new;
 
         return $this;
     }
@@ -186,8 +174,8 @@ class Odoo
      */
     public function limit($limit, $offset = 0)
     {
-        $this->limit['value'] = $limit;
-        $this->offset['value'] = $offset;
+        $this->limit = $limit;
+        $this->offset = $offset;
 
         return $this;
     }
@@ -200,9 +188,7 @@ class Odoo
      */
     public function fields($fields)
     {
-        $fields = is_array($fields) ? $fields : func_get_args();
-
-        $this->fields['value'] = $fields;
+        $this->fields = is_array($fields) ? $fields : func_get_args();
 
         return $this;
     }
@@ -219,7 +205,7 @@ class Odoo
     {
         $method = 'search';
 
-        $condition = $this->condition['value'];
+        $condition = $this->condition ?: [[]];
 
         $params = $this->buildParams('limit', 'offset');
 
@@ -244,7 +230,7 @@ class Odoo
     {
         $method = 'search_count';
 
-        $condition = $this->condition['value'];
+        $condition = $this->condition ?: [[]];
 
         $result = $this->call($model, $method, $condition);
 
@@ -268,9 +254,9 @@ class Odoo
 
         $ids = $this->search($model);
 
-        //If string we it can't continue for retrieving models
-        //Throw exception about what happened.
-        if(is_string($ids))
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
             throw new OdooException($ids);
 
         $params = $this->buildParams('fields');
@@ -355,9 +341,9 @@ class Odoo
 
         $ids = $this->search($model);
 
-        //If string, it can't continue for retrieving models
-        //Throw exception about what happened.
-        if(is_string($ids))
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
             throw new OdooException($ids);
 
         $result = $this->call($model, $method, [$ids->toArray(), $data]);
@@ -393,13 +379,13 @@ class Odoo
     public function delete($model)
     {
         if ($this->hasNotProvided($this->condition))
-            return "To prevent updating all records you must provide at least one condition. Using where method would solve this.";
+            return "To prevent deleting all records you must provide at least one condition. Using where method would solve this.";
 
         $ids = $this->search($model);
 
-        //If string we it can't continue for retrieving models
-        //Throw exception about what happened.
-        if(is_string($ids))
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
             throw new OdooException($ids);
 
         return $this->deleteById($model, $ids);
@@ -633,24 +619,6 @@ class Odoo
 
     }
 
-
-    /**
-     * Create an understandable array for Odoo.
-     *
-     * @param array $list
-     * @return array
-     */
-    private function odooArrayFormat(array $list)
-    {
-        $array = [];
-
-        foreach ($list as $item) {
-
-            $array[0][0][] = $item;
-        }
-        return $array;
-    }
-
     /**
      * Reset extra data to base values
      *
@@ -662,7 +630,7 @@ class Odoo
 
         foreach ($keys as $key) {
             if (property_exists($this, $key))
-                $this->$key['value'] = $this->$key['default'];
+                $this->$key = null;
         }
     }
 
@@ -682,7 +650,7 @@ class Odoo
 
         foreach ($keys as $key) {
             if (property_exists($this, $key))
-                $array = array_merge($array, [$key => $this->$key['value']]);
+                $array = array_merge($array, [$key => $this->$key]);
         }
 
         return $array;
@@ -751,7 +719,7 @@ class Odoo
      */
     private function hasNotProvided($param)
     {
-        return $param['default'] === $param['value'];
+        return !$param;
     }
 
     /**
@@ -759,7 +727,6 @@ class Odoo
      */
     private function autoConnect()
     {
-        if (is_null($this->uid))
-            $this->connect();
+        if (!$this->uid) $this->connect();
     }
 }

@@ -96,7 +96,6 @@ class OdooTest extends TestCase
     {
         $ids = $this->odoo
             ->where('customer', '=', true)
-            ->limit(10)
             ->search('res.partner');
 
         $this->assertArrayNotHasKey('faultCode',$ids);
@@ -134,7 +133,8 @@ class OdooTest extends TestCase
             ->fields('name')
             ->get('res.partner');
 
-        $this->assertFalse($models->has('email'));
+        $this->assertArrayNotHasKey('email',$models->first());
+        $this->assertArrayHasKey('name',$models->first());
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $models);
         $this->assertArrayNotHasKey('faultCode',$models);
         $this->assertCount(3, $models);
