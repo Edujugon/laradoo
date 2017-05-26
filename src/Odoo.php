@@ -22,74 +22,115 @@ class Odoo
 {
 
     /**
-     * RipCord Class - XML-RPC library for PHP - https://github.com/poef/ripcord
+     * Common client
+     *
      * @var string
      */
-    protected $ripcord;
+    public $common;
 
     /**
-     * Common client
-     * @var
-     */
-    public $common;
-    /**
      * Object client
-     * @var
+     *
+     * @var string
      */
     public $object;
 
     /**
-     * User identifier used in authenticated calls instead of the login.
+     * Odoo User identifier.
+     *
+     * @var integer
      */
     protected $uid;
 
 
     /**
-     * DB Credentials
+     * DB Name
+     *
+     * @var string
      */
     protected $db;
+
+    /**
+     * Host Name
+     *
+     * @var string
+     */
     protected $host;
+
+    /**
+     * DB Username
+     *
+     * @var string
+     */
     protected $username;
+
+
+    /**
+     * DB Password
+     *
+     * @var string
+     */
     protected $password;
 
     /**
      * API host suffix
+     *
+     * @var string
      */
     protected $suffix = '/xmlrpc/';
-    /**
-     * END API host suffix
-     */
-
-    /**
-     * EndPoints.
-     */
-    protected $commonEndPoint = 'common'; // meta-calls which don't require authentication
-    protected $objectEndPoint = 'object'; // call methods of odoo models
-    /**
-     * END API Entry Points.
-     */
 
 
     /**
-     * Query parameters
+     * Common endpoint.
+     * meta-calls which don't require authentication
+     *
+     * @var string
      */
+    protected $commonEndPoint = 'common';
 
-    //Condition for the query.
+    /**
+     * Object endpoint.¡
+     *
+     * @var string
+     */
+    protected $objectEndPoint = 'object';
+
+
+    /**
+     * Where Condition
+     *
+     * @var array
+     */
     protected $condition;
 
-    //offset and limit parameters are available to only retrieve a subset of all matched records
+    /**
+     * Offset
+     *
+     * @var integer
+     */
     protected $offset;
+
+    /**
+     * Limit.
+     * available to only retrieve a subset of all matched records
+     *
+     * @var integer
+     */
     protected $limit;
 
-    // fields to be requested.
+    /**
+     * fields to be requested.
+     *
+     * @var array
+     */
     protected $fields;
 
 
+    /**
+     * Create a new Odoo instance.
+     */
     function __construct()
     {
-        // Set Ripcord Instance
-        $this->ripcord = ripcord::class;
-
         $this->loadConfigData();
     }
 
@@ -100,8 +141,7 @@ class Odoo
      */
 
     /**
-     * Connect with Odoo.
-     * Set the uid
+     * Login to Odoo ERP.
      *
      * @param string $db
      * @param string $username
@@ -125,11 +165,12 @@ class Odoo
 
     /**
      * Check access rights on a model.
+     * return true or a string with the error.
      *
      * @param string $permission ('read','write','create','unlink')
      * @param string $model
      * @param bool $withExceptions
-     * @return Collection|string|true Collection |string ( error )| bool (true)
+     * @return string|true
      */
     public function can($permission, $model, $withExceptions = false)
     {
@@ -144,7 +185,7 @@ class Odoo
 
 
     /**
-     * Set condition for search query/method
+     * Set condition for search query
      *
      * @param string $field
      * @param string $operator
@@ -165,12 +206,12 @@ class Odoo
 
 
     /**
-     * Set limit for your query.
-     * Also can pass offset to start from that value.
+     * Limit helps to only retrieve a subset of all matched records
+     * second parameter, offset to start from that value.
      *
      * @param int $limit
      * @param int $offset
-     * @return Odoo $this
+     * @return $this
      */
     public function limit($limit, $offset = 0)
     {
@@ -181,7 +222,7 @@ class Odoo
     }
 
     /**
-     * Set fields to be retrieved.
+     * Set fields to retrieve.
      *
      * @param array $fields
      * @return $this
@@ -194,8 +235,7 @@ class Odoo
     }
 
     /**
-     * By default, retrieve the ids based on a previous passed condition.
-     * If no condition, all are retrieved.
+     * Get the ids of the models.
      *
      * @param string $model Model name
      * @return Collection List of ids
@@ -219,8 +259,7 @@ class Odoo
 
 
     /**
-     * Count the items in a model based on the condition.
-     * If no condition, count all.
+     * Count the items in a model's table.
      *
      * @param string $model
      * @return integer
@@ -242,7 +281,7 @@ class Odoo
     }
 
     /**
-     * Retrieve model's data
+     * Get a list of records.
      *
      * @param string $model
      * @return Collection
@@ -271,7 +310,7 @@ class Odoo
 
 
     /**
-     * Retrieve the Odoo version.
+     * Retrieve Odoo version.
      * If key passed it returns the key value of the collection
      * No need authentication
      *
@@ -288,11 +327,7 @@ class Odoo
     }
 
     /**
-     * Retrieve all model structure fields.
-     *
-     * the most interesting items for a human user are string (the field's label),
-     * help (a help text if available) and type (to know which values to expect,
-     * or to send when updating a record)
+     * Get a collection of fields of a model table.
      *
      * @param string $model
      * @return Collection
@@ -325,7 +360,7 @@ class Odoo
     }
 
     /**
-     * Update one or more records based on a previous passed condition.
+     * Update one or more records.
      *
      * @param string $model
      * @param array $data
@@ -353,14 +388,16 @@ class Odoo
 
     /**
      * Remove a record by Id or Ids.
+     * returns true except when an error happened.
      *
      * @param string $model
      * @param array|Collection|int $id
-     * @return true|string Always true except an error (string).
+     * @return true|string
      */
     public function deleteById($model, $id)
     {
-        if ($id instanceof Collection) $id = $id->toArray();
+        if ($id instanceof Collection)
+            $id = $id->toArray();
 
         $method = 'unlink';
 
@@ -370,10 +407,11 @@ class Odoo
     }
 
     /**
-     * Remove record/records based on conditions.
+     * Remove one or a group of records.
+     * returns true except when an error happened.
      *
      * @param string $model
-     * @return true|string Always true except an error (string).
+     * @return true|string
      * @throws OdooException
      */
     public function delete($model)
@@ -392,7 +430,7 @@ class Odoo
     }
 
     /**
-     * Run Client execute_kw call with provided params.
+     * Run execute_kw call with provided params.
      *
      * @param $params
      * @return Collection
@@ -407,9 +445,19 @@ class Odoo
             func_get_args()
         );
 
-        return collect(call_user_func_array([$this->object, 'execute_kw'], $args));
+        return collect(call_user_func_array([$this->object,'execute_kw'], $args));
     }
 
+    /**
+     * Get a XML-RPC client
+     *
+     * @param string $endPoint
+     * @return \Ripcord_Client
+     */
+    public function getClient($endPoint)
+    {
+        return ripcord::client($endPoint);
+    }
 
     /**
      * **********
@@ -425,10 +473,10 @@ class Odoo
      */
 
     /**
-     * Set url property
+     * Set host
      *
-     * @param string $url Odoo API entry point.
-     * @return Odoo $this
+     * @param string $url.
+     * @return $this
      */
     public function host($url)
     {
@@ -438,10 +486,10 @@ class Odoo
     }
 
     /**
-     * Set the username
+     * Set username
      *
      * @param string $username
-     * @return Odoo $this
+     * @return $this
      */
     public function username($username)
     {
@@ -451,10 +499,10 @@ class Odoo
     }
 
     /**
-     * Set the password.
+     * Set password.
      *
-     * @param $password
-     * @return Odoo $this
+     * @param string $password
+     * @return $this
      */
     public function password($password)
     {
@@ -464,10 +512,10 @@ class Odoo
     }
 
     /**
-     * Set the db name.
+     * Set db name.
      *
      * @param string $name
-     * @return Odoo $this
+     * @return $this
      */
     public function db($name)
     {
@@ -477,7 +525,7 @@ class Odoo
     }
 
     /**
-     * Set the API suffix.
+     * Set API suffix.
      *
      * @param $name
      * @return $this
@@ -502,19 +550,9 @@ class Odoo
      */
 
     /**
-     * Get ripcord property
+     * Get the Odoo user identifier
      *
-     * @return string
-     */
-    public function getRipcord()
-    {
-        return $this->ripcord;
-    }
-
-    /**
-     * Get the user identifier used in authenticated
-     *
-     * @return mixed
+     * @return integer
      */
     public function getUid()
     {
@@ -543,7 +581,8 @@ class Odoo
 
     /**
      * Get username
-     * @return mixed
+     *
+     * @return string
      */
     public function getUserName()
     {
@@ -552,7 +591,8 @@ class Odoo
 
     /**
      * Get password
-     * @return mixed
+     *
+     * @return string
      */
     public function getPassword()
     {
@@ -654,17 +694,6 @@ class Odoo
         }
 
         return $array;
-    }
-
-    /**
-     * Create XML-RPC client
-     *
-     * @param $endPoint
-     * @return \Ripcord_Client
-     */
-    private function getClient($endPoint)
-    {
-        return ripcord::client($endPoint);
     }
 
     /**
