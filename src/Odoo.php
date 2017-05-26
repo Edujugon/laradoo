@@ -32,7 +32,7 @@ class Odoo
     public $object;
 
     /**
-     * Odoo User identifier.
+     * Odoo User identifier
      *
      * @var integer
      */
@@ -77,7 +77,7 @@ class Odoo
 
 
     /**
-     * Common endpoint.
+     * Common endpoint
      * meta-calls which don't require authentication
      *
      * @var string
@@ -85,7 +85,7 @@ class Odoo
     protected $commonEndPoint = 'common';
 
     /**
-     * Object endpoint.¡
+     * Object endpoint
      *
      * @var string
      */
@@ -107,7 +107,7 @@ class Odoo
     protected $offset;
 
     /**
-     * Limit.
+     * Limit
      * available to only retrieve a subset of all matched records
      *
      * @var integer
@@ -115,7 +115,7 @@ class Odoo
     protected $limit;
 
     /**
-     * fields to be requested.
+     * fields to be requested
      *
      * @var array
      */
@@ -123,7 +123,7 @@ class Odoo
 
 
     /**
-     * Create a new Odoo instance.
+     * Create a new Odoo instance
      */
     function __construct()
     {
@@ -163,7 +163,7 @@ class Odoo
      * Check access rights on a model.
      * return true or a string with the error.
      *
-     * @param string $permission ('read','write','create','unlink')
+     * @param string $permission
      * @param string $model
      * @param bool $withExceptions
      * @return string|true
@@ -233,8 +233,8 @@ class Odoo
     /**
      * Get the ids of the models.
      *
-     * @param string $model Model name
-     * @return Collection List of ids
+     * @param string $model
+     * @return Collection
      * @throws OdooException
      */
     public function search($model)
@@ -343,7 +343,7 @@ class Odoo
      *
      * @param string $model
      * @param array $data
-     * @return integer ID of the new record
+     * @return integer
      */
     public function create($model, array $data)
     {
@@ -357,10 +357,11 @@ class Odoo
 
     /**
      * Update one or more records.
+     * returns true except when an error happened.
      *
      * @param string $model
      * @param array $data
-     * @return true|string Always true except an error (string).
+     * @return true|string
      * @throws OdooException
      */
     public function update($model, array $data)
