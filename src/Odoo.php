@@ -13,11 +13,7 @@ use Edujugon\Laradoo\Exceptions\OdooException;
 use Illuminate\Support\Collection;
 use ripcord;
 
-/**
- * Odoo Class
- * Used to connect with the odoo.com ERP.
- *
- */
+
 class Odoo
 {
 
