@@ -164,4 +164,20 @@ $updated = $odoo->where('name', 'John Odoo')
             ->update('res.partner',['name' => 'John Odoo Odoo','email' => 'Johndoe@odoo.com']);
 ```
 
-Be aware that all `delete` and `update` methods always returns `true` except if there was an error.
+Notice that all `delete` and `update` methods always returns `true` except if there was an error.
+
+`call` method is also available for those who want to set a custom API call:
+
+```
+$odoo->call('res.partner', 'search',[
+        [
+            ['is_company', '=', true],
+            ['customer', '=', true]
+        ]
+    ],[
+        'offset'=>1,
+        'limit'=>5
+    ]);
+```
+
+##  [Full API list](https://edujugon.github.io/laradoo/build/master/index.html)
