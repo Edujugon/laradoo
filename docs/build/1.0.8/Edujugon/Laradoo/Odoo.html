@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="index, follow, all" />
+    <title>Edujugon\Laradoo\Odoo | Odoo ERP API for Laravel</title>
+
+            <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="../../css/sami.css">
+        <script src="../../js/jquery-1.11.1.min.js"></script>
+        <script src="../../js/bootstrap.min.js"></script>
+        <script src="../../js/typeahead.min.js"></script>
+        <script src="../../sami.js"></script>
+        <meta name="MobileOptimized" content="width">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    
+    
+    </head>
+
+    <body id="class" data-name="class:Edujugon_Laradoo_Odoo" data-root-path="../../">
+            <div id="content">
+        <div id="left-column">
+                <div id="control-panel">
+                    <form action="#" method="GET">
+                <select id="version-switcher" name="version">
+                                            <option value="../../../1.0.8/index.html" data-version="1.0.8">Laradoo 1.0.8</option>
+                                            <option value="../../../master/index.html" data-version="master">Laradoo Master</option>
+                                    </select>
+            </form>
+                <script>
+            $('option[data-version="'+window.projectVersion+'"]').prop('selected', true);
+        </script>
+        <form id="search-form" action="../../search.html" method="GET">
+            <span class="glyphicon glyphicon-search"></span>
+            <input name="search"
+                   class="typeahead form-control"
+                   type="search"
+                   placeholder="Search">
+        </form>
+    </div>
+
+                <div id="api-tree"></div>
+
+        </div>
+        <div id="right-column">
+                <nav id="site-nav" class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-elements">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">Odoo ERP API for Laravel</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-elements">
+                <ul class="nav navbar-nav">
+                    <li><a href="../../classes.html">Classes</a></li>
+                                            <li><a href="../../namespaces.html">Namespaces</a></li>
+                                        <li><a href="../../interfaces.html">Interfaces</a></li>
+                    <li><a href="../../traits.html">Traits</a></li>
+                    <li><a href="../../doc-index.html">Index</a></li>
+                    <li><a href="../../search.html">Search</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+                        <div class="namespace-breadcrumbs">
+            <ol class="breadcrumb">
+                <li><span class="label label-default">class</span></li>
+                                                            <li><a href="../../Edujugon.html">Edujugon</a></li>
+                                        <li><a href="../../Edujugon/Laradoo.html">Laradoo</a></li>
+    
+                <li>Odoo</li>
+            </ol>
+        </div>
+                <div id="page-content">
+                
+    <div class="page-header">
+        <h1>
+            Odoo
+                
+        </h1>
+    </div>
+
+    <p>    class
+    <strong>Odoo</strong>        (<a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php">View source</a>)
+</p>
+
+        
+    
+
+            <div class="description">
+            <p>Odoo Class
+Used to connect with the odoo.com ERP.</p>                                </div>
+    
+    
+    
+            <h2>Properties</h2>
+
+            <table class="table table-condensed">
+                    <tr>
+                <td class="type" id="property_ripcord">
+                                        protected                                        string
+                </td>
+                <td>$ripcord</td>
+                <td class="last">RipCord Class - XML-RPC library for PHP - https://github.com/poef/ripcord</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_common">
+                                                                                
+                </td>
+                <td>$common</td>
+                <td class="last">Common client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_object">
+                                                                                
+                </td>
+                <td>$object</td>
+                <td class="last">Object client</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_uid">
+                                        protected                                        
+                </td>
+                <td>$uid</td>
+                <td class="last">User identifier used in authenticated calls instead of the login.</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_db">
+                                        protected                                        
+                </td>
+                <td>$db</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_host">
+                                        protected                                        
+                </td>
+                <td>$host</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_username">
+                                        protected                                        
+                </td>
+                <td>$username</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_password">
+                                        protected                                        
+                </td>
+                <td>$password</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_suffix">
+                                        protected                                        
+                </td>
+                <td>$suffix</td>
+                <td class="last">API host suffix</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_commonEndPoint">
+                                        protected                                        
+                </td>
+                <td>$commonEndPoint</td>
+                <td class="last">EndPoints.</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_objectEndPoint">
+                                        protected                                        
+                </td>
+                <td>$objectEndPoint</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_condition">
+                                        protected                                        
+                </td>
+                <td>$condition</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_offset">
+                                        protected                                        
+                </td>
+                <td>$offset</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_limit">
+                                        protected                                        
+                </td>
+                <td>$limit</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td class="type" id="property_fields">
+                                        protected                                        
+                </td>
+                <td>$fields</td>
+                <td class="last"></td>
+                <td></td>
+            </tr>
+            </table>
+
+    
+            <h2>Methods</h2>
+
+            <div class="container-fluid underlined">
+                    <div class="row">
+                <div class="col-md-2 type">
+                    
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method___construct">__construct</a>()
+        
+                                            <p class="no-description">No description</p>
+                                    </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_connect">connect</a>(string $db = null, string $username = null, string $password = null, array $array = [])
+        
+                                            <p>Connect with Odoo.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>|string|<abbr title="Edujugon\Laradoo\true">true</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_can">can</a>(string $permission, string $model, bool $withExceptions = false)
+        
+                                            <p>Check access rights on a model.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_where">where</a>(string $field, string $operator, string $value = null)
+        
+                                            <p>Set condition for search query/method</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_limit">limit</a>(int $limit, int $offset)
+        
+                                            <p>Set limit for your query.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_fields">fields</a>(array $fields)
+        
+                                            <p>Set fields to be retrieved.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_search">search</a>(string $model)
+        
+                                            <p>By default, retrieve the ids based on a previous passed condition.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    integer
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_count">count</a>(string $model)
+        
+                                            <p>Count the items in a model based on the condition.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_get">get</a>(string $model)
+        
+                                            <p>Retrieve model's data</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_version">version</a>(string $key = null)
+        
+                                            <p>Retrieve the Odoo version.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_fieldsOf">fieldsOf</a>(string $model)
+        
+                                            <p>Retrieve all model structure fields.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    integer
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_create">create</a>(string $model, array $data)
+        
+                                            <p>Create a single record and return its database identifier.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_update">update</a>(string $model, array $data)
+        
+                                            <p>Update one or more records based on a previous passed condition.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_deleteById">deleteById</a>(string $model, array|<abbr title="Illuminate\Support\Collection">Collection</abbr>|int $id)
+        
+                                            <p>Remove a record by Id or Ids.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_delete">delete</a>(string $model)
+        
+                                            <p>Remove record/records based on conditions.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_call">call</a>($params)
+        
+                                            <p>Run Client execute_kw call with provided params.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_host">host</a>(string $url)
+        
+                                            <p>Set url property</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_username">username</a>(string $username)
+        
+                                            <p>Set the username</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_password">password</a>($password)
+        
+                                            <p>Set the password.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_db">db</a>(string $name)
+        
+                                            <p>Set the db name.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_apiSuffix">apiSuffix</a>($name)
+        
+                                            <p>Set the API suffix.</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getRipcord">getRipcord</a>()
+        
+                                            <p>Get ripcord property</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUid">getUid</a>()
+        
+                                            <p>Get the user identifier used in authenticated</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getHost">getHost</a>()
+        
+                                            <p>Get host</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    string
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getDb">getDb</a>()
+        
+                                            <p>Get db</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getUserName">getUserName</a>()
+        
+                                            <p>Get username</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+                    <div class="row">
+                <div class="col-md-2 type">
+                    mixed
+                </div>
+                <div class="col-md-8 type">
+                    <a href="#method_getPassword">getPassword</a>()
+        
+                                            <p>Get password</p>                </div>
+                <div class="col-md-2"></div>
+            </div>
+            </div>
+
+
+        <h2>Details</h2>
+
+            <div id="method-details">
+                    <div class="method-item">
+                    <h3 id="method___construct">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L97">line 97</a></div>
+        <code>                    
+    <strong>__construct</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                <div class="tags">
+            
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_connect">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L122">line 122</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+    <strong>connect</strong>(string $db = null, string $username = null, string $password = null, array $array = [])
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Connect with Odoo.</p>                    <p>Set the uid</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$db</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$username</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$password</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$array</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_can">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L143">line 143</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>|string|<abbr title="Edujugon\Laradoo\true">true</abbr>
+    <strong>can</strong>(string $permission, string $model, bool $withExceptions = false)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Check access rights on a model.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$permission</td>
+                <td>('read','write','create','unlink')</td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>bool</td>
+                <td>$withExceptions</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr>|string|<abbr title="Edujugon\Laradoo\true">true</abbr></td>
+            <td>Collection |string ( error )| bool (true)</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_where">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L163">line 163</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+    <strong>where</strong>(string $field, string $operator, string $value = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set condition for search query/method</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$field</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$operator</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>string</td>
+                <td>$value</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_limit">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L187">line 187</a></div>
+        <code>                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+    <strong>limit</strong>(int $limit, int $offset)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set limit for your query.</p>                    <p>Also can pass offset to start from that value.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>int</td>
+                <td>$limit</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>int</td>
+                <td>$offset</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a></td>
+            <td>$this</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fields">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L201">line 201</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+    <strong>fields</strong>(array $fields)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set fields to be retrieved.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>array</td>
+                <td>$fields</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_search">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L218">line 218</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+    <strong>search</strong>(string $model)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>By default, retrieve the ids based on a previous passed condition.</p>                    <p>If no condition, all are retrieved.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td>Model name</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr></td>
+            <td>List of ids</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_count">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L243">line 243</a></div>
+        <code>                    integer
+    <strong>count</strong>(string $model)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Count the items in a model based on the condition.</p>                    <p>If no condition, count all.</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>integer</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_get">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L265">line 265</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+    <strong>get</strong>(string $model)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Retrieve model's data</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_version">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L295">line 295</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>|string
+    <strong>version</strong>(string $key = null)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Retrieve the Odoo version.</p>                    <p>If key passed it returns the key value of the collection
+No need authentication</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$key</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr>|string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_fieldsOf">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L314">line 314</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+    <strong>fieldsOf</strong>(string $model)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Retrieve all model structure fields.</p>                    <p>the most interesting items for a human user are string (the field's label),
+help (a help text if available) and type (to know which values to expect,
+or to send when updating a record)</p>                            </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_create">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L331">line 331</a></div>
+        <code>                    integer
+    <strong>create</strong>(string $model, array $data)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Create a single record and return its database identifier.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>integer</td>
+            <td>ID of the new record</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_update">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L349">line 349</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+    <strong>update</strong>(string $model, array $data)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Update one or more records based on a previous passed condition.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array</td>
+                <td>$data</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\true">true</abbr>|string</td>
+            <td>Always true except an error (string).</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_deleteById">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L375">line 375</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+    <strong>deleteById</strong>(string $model, array|<abbr title="Illuminate\Support\Collection">Collection</abbr>|int $id)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Remove a record by Id or Ids.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+                    <tr>
+                <td>array|<abbr title="Illuminate\Support\Collection">Collection</abbr>|int</td>
+                <td>$id</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\true">true</abbr>|string</td>
+            <td>Always true except an error (string).</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_delete">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L393">line 393</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\true">true</abbr>|string
+    <strong>delete</strong>(string $model)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Remove record/records based on conditions.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$model</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\true">true</abbr>|string</td>
+            <td>Always true except an error (string).</td>
+        </tr>
+    </table>
+
+            
+                            <h4>Exceptions</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td><abbr title="Edujugon\Laradoo\Exceptions\OdooException">OdooException</abbr></td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_call">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L414">line 414</a></div>
+        <code>                    <abbr title="Illuminate\Support\Collection">Collection</abbr>
+    <strong>call</strong>($params)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Run Client execute_kw call with provided params.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$params</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Illuminate\Support\Collection">Collection</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_host">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L447">line 447</a></div>
+        <code>                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+    <strong>host</strong>(string $url)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set url property</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$url</td>
+                <td>Odoo API entry point.</td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a></td>
+            <td>$this</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_username">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L460">line 460</a></div>
+        <code>                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+    <strong>username</strong>(string $username)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the username</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$username</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a></td>
+            <td>$this</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_password">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L473">line 473</a></div>
+        <code>                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+    <strong>password</strong>($password)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the password.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$password</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a></td>
+            <td>$this</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_db">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L486">line 486</a></div>
+        <code>                    <a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a>
+    <strong>db</strong>(string $name)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the db name.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td>string</td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><a href="../../Edujugon/Laradoo/Odoo.html"><abbr title="Edujugon\Laradoo\Odoo">Odoo</abbr></a></td>
+            <td>$this</td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_apiSuffix">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L499">line 499</a></div>
+        <code>                    <abbr title="Edujugon\Laradoo\$this">$this</abbr>
+    <strong>apiSuffix</strong>($name)
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Set the API suffix.</p>                                                </div>
+                <div class="tags">
+                            <h4>Parameters</h4>
+
+                    <table class="table table-condensed">
+                    <tr>
+                <td></td>
+                <td>$name</td>
+                <td></td>
+            </tr>
+            </table>
+
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td><abbr title="Edujugon\Laradoo\$this">$this</abbr></td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getRipcord">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L523">line 523</a></div>
+        <code>                    string
+    <strong>getRipcord</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get ripcord property</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUid">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L533">line 533</a></div>
+        <code>                    mixed
+    <strong>getUid</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get the user identifier used in authenticated</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getHost">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L543">line 543</a></div>
+        <code>                    string
+    <strong>getHost</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get host</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getDb">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L553">line 553</a></div>
+        <code>                    string
+    <strong>getDb</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get db</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>string</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getUserName">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L562">line 562</a></div>
+        <code>                    mixed
+    <strong>getUserName</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get username</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+                    <div class="method-item">
+                    <h3 id="method_getPassword">
+        <div class="location">at         <a href="https://github.com/edujugon/laradoo/blob/1.0.8/src/Odoo.php#L571">line 571</a></div>
+        <code>                    mixed
+    <strong>getPassword</strong>()
+        </code>
+    </h3>
+    <div class="details">
+            
+    
+
+                    <div class="method-description">
+                                    <p>Get password</p>                                                </div>
+                <div class="tags">
+            
+                            <h4>Return Value</h4>
+
+                    <table class="table table-condensed">
+        <tr>
+            <td>mixed</td>
+            <td></td>
+        </tr>
+    </table>
+
+            
+            
+                    </div>
+    </div>
+
+            </div>
+            </div>
+
+    
+            </div>
+                <div id="footer">
+        Generated by <a href="http://sami.sensiolabs.org/">Sami, the API Documentation Generator</a>.
+    </div>
+
+        </div>
+    </div>
+    </body>
+
+</html>

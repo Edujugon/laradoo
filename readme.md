@@ -180,4 +180,4 @@ $odoo->call('res.partner', 'search',[
     ]);
 ```
 
-##  [Full API list](https://edujugon.github.io/laradoo/build/master/index.html)
+##  [Full API list](https://edujugon.github.io/laradoo/build/master/Edujugon/Laradoo/Odoo.html)
