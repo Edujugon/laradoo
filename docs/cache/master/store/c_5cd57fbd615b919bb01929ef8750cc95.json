@@ -1,14 +1,14 @@
 {
     "name": "Edujugon\\Laradoo\\Odoo",
-    "line": 21,
-    "short_desc": "Odoo Class\nUsed to connect with the odoo.com ERP.",
+    "line": 17,
+    "short_desc": "",
     "long_desc": "",
     "hint": null,
     "tags": [],
     "namespace": "Edujugon\\Laradoo",
     "file": "\/Users\/Edujugon\/Code\/Documentation\/Documentator\/laradoo\/..\/..\/..\/OpenSource\/laradoo\/src\/Odoo.php",
     "relative_file": "\/src\/Odoo.php",
-    "hash": "8125c7490982b47f99ff3a211402a463507f141d",
+    "hash": "841b6533ff6d5f72dc073a209dfd9673bc887c6d",
     "parent": null,
     "modifiers": null,
     "is_trait": false,
@@ -22,10 +22,61 @@
     "interfaces": [],
     "traits": [],
     "properties": {
-        "ripcord": {
-            "name": "ripcord",
-            "line": 28,
-            "short_desc": "RipCord Class - XML-RPC library for PHP - https:\/\/github.com\/poef\/ripcord",
+        "common": {
+            "name": "common",
+            "line": 25,
+            "short_desc": "Common client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": []
+        },
+        "object": {
+            "name": "object",
+            "line": 32,
+            "short_desc": "Object client",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "default": null,
+            "errors": []
+        },
+        "uid": {
+            "name": "uid",
+            "line": 39,
+            "short_desc": "Odoo User identifier",
+            "long_desc": "",
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 2,
+            "default": null,
+            "errors": []
+        },
+        "db": {
+            "name": "db",
+            "line": 47,
+            "short_desc": "DB Name",
             "long_desc": "",
             "hint": [
                 [
@@ -39,61 +90,18 @@
             "default": null,
             "errors": []
         },
-        "common": {
-            "name": "common",
-            "line": 34,
-            "short_desc": "Common client",
-            "long_desc": "",
-            "hint": [],
-            "hint_desc": "",
-            "tags": [],
-            "modifiers": 1,
-            "default": null,
-            "errors": []
-        },
-        "object": {
-            "name": "object",
-            "line": 39,
-            "short_desc": "Object client",
-            "long_desc": "",
-            "hint": [],
-            "hint_desc": "",
-            "tags": [],
-            "modifiers": 1,
-            "default": null,
-            "errors": []
-        },
-        "uid": {
-            "name": "uid",
-            "line": 44,
-            "short_desc": "User identifier used in authenticated calls instead of the login.",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": 2,
-            "default": null,
-            "errors": []
-        },
-        "db": {
-            "name": "db",
-            "line": 50,
-            "short_desc": "DB Credentials",
-            "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
-            "tags": [],
-            "modifiers": 2,
-            "default": null,
-            "errors": []
-        },
         "host": {
             "name": "host",
-            "line": 51,
-            "short_desc": "",
+            "line": 54,
+            "short_desc": "Host Name",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -101,11 +109,16 @@
         },
         "username": {
             "name": "username",
-            "line": 52,
-            "short_desc": "",
+            "line": 61,
+            "short_desc": "DB Username",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -113,11 +126,16 @@
         },
         "password": {
             "name": "password",
-            "line": 53,
-            "short_desc": "",
+            "line": 69,
+            "short_desc": "DB Password",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -125,19 +143,24 @@
         },
         "suffix": {
             "name": "suffix",
-            "line": 58,
+            "line": 76,
             "short_desc": "API host suffix",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "\/xmlrpc\/",
                 "attributes": {
-                    "startLine": 58,
-                    "endLine": 58,
+                    "startLine": 76,
+                    "endLine": 76,
                     "kind": 1
                 }
             },
@@ -145,19 +168,24 @@
         },
         "commonEndPoint": {
             "name": "commonEndPoint",
-            "line": 66,
-            "short_desc": "EndPoints.",
+            "line": 85,
+            "short_desc": "Common endpoint\nmeta-calls which don't require authentication",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "common",
                 "attributes": {
-                    "startLine": 66,
-                    "endLine": 66,
+                    "startLine": 85,
+                    "endLine": 85,
                     "kind": 1
                 }
             },
@@ -165,19 +193,24 @@
         },
         "objectEndPoint": {
             "name": "objectEndPoint",
-            "line": 67,
-            "short_desc": "",
+            "line": 92,
+            "short_desc": "Object endpoint",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": {
                 "nodeType": "Scalar_String",
                 "value": "object",
                 "attributes": {
-                    "startLine": 67,
-                    "endLine": 67,
+                    "startLine": 92,
+                    "endLine": 92,
                     "kind": 1
                 }
             },
@@ -185,11 +218,16 @@
         },
         "condition": {
             "name": "condition",
-            "line": 78,
-            "short_desc": "",
+            "line": 100,
+            "short_desc": "Where Condition",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -197,11 +235,16 @@
         },
         "offset": {
             "name": "offset",
-            "line": 81,
-            "short_desc": "",
+            "line": 107,
+            "short_desc": "Offset",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -209,11 +252,16 @@
         },
         "limit": {
             "name": "limit",
-            "line": 82,
-            "short_desc": "",
+            "line": 115,
+            "short_desc": "Limit\navailable to only retrieve a subset of all matched records",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "integer",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -221,11 +269,16 @@
         },
         "fields": {
             "name": "fields",
-            "line": 85,
-            "short_desc": "",
+            "line": 122,
+            "short_desc": "fields to be requested",
             "long_desc": "",
-            "hint": null,
-            "hint_desc": null,
+            "hint": [
+                [
+                    "array",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 2,
             "default": null,
@@ -235,8 +288,8 @@
     "methods": {
         "__construct": {
             "name": "__construct",
-            "line": 88,
-            "short_desc": "",
+            "line": 128,
+            "short_desc": "Create a new Odoo instance",
             "long_desc": "",
             "hint": null,
             "hint_desc": null,
@@ -249,9 +302,9 @@
         },
         "connect": {
             "name": "connect",
-            "line": 113,
-            "short_desc": "Connect with Odoo.",
-            "long_desc": "Set the uid",
+            "line": 149,
+            "short_desc": "Login to Odoo ERP.",
+            "long_desc": "",
             "hint": [
                 [
                     "Edujugon\\Laradoo\\$this",
@@ -272,7 +325,7 @@
             "parameters": {
                 "db": {
                     "name": "db",
-                    "line": 113,
+                    "line": 149,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -288,7 +341,7 @@
                 },
                 "username": {
                     "name": "username",
-                    "line": 113,
+                    "line": 149,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -304,7 +357,7 @@
                 },
                 "password": {
                     "name": "password",
-                    "line": 113,
+                    "line": 149,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -320,7 +373,7 @@
                 },
                 "array": {
                     "name": "array",
-                    "line": 113,
+                    "line": 149,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -338,14 +391,10 @@
         },
         "can": {
             "name": "can",
-            "line": 134,
+            "line": 171,
             "short_desc": "Check access rights on a model.",
-            "long_desc": "",
+            "long_desc": "return true or a string with the error.",
             "hint": [
-                [
-                    "\\Illuminate\\Support\\Collection",
-                    false
-                ],
                 [
                     "string",
                     false
@@ -355,7 +404,7 @@
                     false
                 ]
             ],
-            "hint_desc": "Collection |string ( error )| bool (true)",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -364,8 +413,8 @@
             "parameters": {
                 "permission": {
                     "name": "permission",
-                    "line": 134,
-                    "short_desc": "('read','write','create','unlink')",
+                    "line": 171,
+                    "short_desc": "",
                     "long_desc": null,
                     "hint": [
                         [
@@ -380,7 +429,7 @@
                 },
                 "model": {
                     "name": "model",
-                    "line": 134,
+                    "line": 171,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -396,7 +445,7 @@
                 },
                 "withExceptions": {
                     "name": "withExceptions",
-                    "line": 134,
+                    "line": 171,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -414,8 +463,8 @@
         },
         "where": {
             "name": "where",
-            "line": 154,
-            "short_desc": "Set condition for search query\/method",
+            "line": 191,
+            "short_desc": "Set condition for search query",
             "long_desc": "",
             "hint": [
                 [
@@ -432,7 +481,7 @@
             "parameters": {
                 "field": {
                     "name": "field",
-                    "line": 154,
+                    "line": 191,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -448,7 +497,7 @@
                 },
                 "operator": {
                     "name": "operator",
-                    "line": 154,
+                    "line": 191,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -464,7 +513,7 @@
                 },
                 "value": {
                     "name": "value",
-                    "line": 154,
+                    "line": 191,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -482,16 +531,16 @@
         },
         "limit": {
             "name": "limit",
-            "line": 175,
-            "short_desc": "Set limit for your query.",
-            "long_desc": "Also can pass offset to start from that value.",
+            "line": 212,
+            "short_desc": "Limit helps to only retrieve a subset of all matched records\nsecond parameter, offset to start from that value.",
+            "long_desc": "",
             "hint": [
                 [
-                    "\\Edujugon\\Laradoo\\Odoo",
+                    "Edujugon\\Laradoo\\$this",
                     false
                 ]
             ],
-            "hint_desc": "$this",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -500,7 +549,7 @@
             "parameters": {
                 "limit": {
                     "name": "limit",
-                    "line": 175,
+                    "line": 212,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -516,7 +565,7 @@
                 },
                 "offset": {
                     "name": "offset",
-                    "line": 175,
+                    "line": 212,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -534,8 +583,8 @@
         },
         "fields": {
             "name": "fields",
-            "line": 189,
-            "short_desc": "Set fields to be retrieved.",
+            "line": 226,
+            "short_desc": "Set fields to retrieve.",
             "long_desc": "",
             "hint": [
                 [
@@ -552,7 +601,7 @@
             "parameters": {
                 "fields": {
                     "name": "fields",
-                    "line": 189,
+                    "line": 226,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -570,16 +619,16 @@
         },
         "search": {
             "name": "search",
-            "line": 204,
-            "short_desc": "By default, retrieve the ids based on a previous passed condition.",
-            "long_desc": "If no condition, all are retrieved.",
+            "line": 240,
+            "short_desc": "Get the ids of the models.",
+            "long_desc": "",
             "hint": [
                 [
                     "\\Illuminate\\Support\\Collection",
                     false
                 ]
             ],
-            "hint_desc": "List of ids",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -593,8 +642,8 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 204,
-                    "short_desc": "Model name",
+                    "line": 240,
+                    "short_desc": "",
                     "long_desc": null,
                     "hint": [
                         [
@@ -611,9 +660,9 @@
         },
         "count": {
             "name": "count",
-            "line": 229,
-            "short_desc": "Count the items in a model based on the condition.",
-            "long_desc": "If no condition, count all.",
+            "line": 264,
+            "short_desc": "Count the items in a model's table.",
+            "long_desc": "",
             "hint": [
                 [
                     "integer",
@@ -634,7 +683,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 229,
+                    "line": 264,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -652,8 +701,8 @@
         },
         "get": {
             "name": "get",
-            "line": 251,
-            "short_desc": "Retrieve model's data",
+            "line": 286,
+            "short_desc": "Get a list of records.",
             "long_desc": "",
             "hint": [
                 [
@@ -675,7 +724,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 251,
+                    "line": 286,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -693,8 +742,8 @@
         },
         "version": {
             "name": "version",
-            "line": 281,
-            "short_desc": "Retrieve the Odoo version.",
+            "line": 316,
+            "short_desc": "Retrieve Odoo version.",
             "long_desc": "If key passed it returns the key value of the collection\nNo need authentication",
             "hint": [
                 [
@@ -715,7 +764,7 @@
             "parameters": {
                 "key": {
                     "name": "key",
-                    "line": 281,
+                    "line": 316,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -733,9 +782,9 @@
         },
         "fieldsOf": {
             "name": "fieldsOf",
-            "line": 300,
-            "short_desc": "Retrieve all model structure fields.",
-            "long_desc": "the most interesting items for a human user are string (the field's label),\nhelp (a help text if available) and type (to know which values to expect,\nor to send when updating a record)",
+            "line": 331,
+            "short_desc": "Get a collection of fields of a model table.",
+            "long_desc": "",
             "hint": [
                 [
                     "\\Illuminate\\Support\\Collection",
@@ -751,7 +800,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 300,
+                    "line": 331,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -769,7 +818,7 @@
         },
         "create": {
             "name": "create",
-            "line": 317,
+            "line": 348,
             "short_desc": "Create a single record and return its database identifier.",
             "long_desc": "",
             "hint": [
@@ -778,7 +827,7 @@
                     false
                 ]
             ],
-            "hint_desc": "ID of the new record",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -787,7 +836,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 317,
+                    "line": 348,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -803,7 +852,7 @@
                 },
                 "data": {
                     "name": "data",
-                    "line": 317,
+                    "line": 348,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -821,9 +870,9 @@
         },
         "update": {
             "name": "update",
-            "line": 335,
-            "short_desc": "Update one or more records based on a previous passed condition.",
-            "long_desc": "",
+            "line": 367,
+            "short_desc": "Update one or more records.",
+            "long_desc": "returns true except when an error happened.",
             "hint": [
                 [
                     "Edujugon\\Laradoo\\true",
@@ -834,7 +883,7 @@
                     false
                 ]
             ],
-            "hint_desc": "Always true except an error (string).",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -848,7 +897,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 335,
+                    "line": 367,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -864,7 +913,7 @@
                 },
                 "data": {
                     "name": "data",
-                    "line": 335,
+                    "line": 367,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -882,9 +931,9 @@
         },
         "deleteById": {
             "name": "deleteById",
-            "line": 361,
+            "line": 394,
             "short_desc": "Remove a record by Id or Ids.",
-            "long_desc": "",
+            "long_desc": "returns true except when an error happened.",
             "hint": [
                 [
                     "Edujugon\\Laradoo\\true",
@@ -895,7 +944,7 @@
                     false
                 ]
             ],
-            "hint_desc": "Always true except an error (string).",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -904,7 +953,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 361,
+                    "line": 394,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -920,7 +969,7 @@
                 },
                 "id": {
                     "name": "id",
-                    "line": 361,
+                    "line": 394,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -946,9 +995,9 @@
         },
         "delete": {
             "name": "delete",
-            "line": 379,
-            "short_desc": "Remove record\/records based on conditions.",
-            "long_desc": "",
+            "line": 414,
+            "short_desc": "Remove one or a group of records.",
+            "long_desc": "returns true except when an error happened.",
             "hint": [
                 [
                     "Edujugon\\Laradoo\\true",
@@ -959,7 +1008,7 @@
                     false
                 ]
             ],
-            "hint_desc": "Always true except an error (string).",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -973,7 +1022,7 @@
             "parameters": {
                 "model": {
                     "name": "model",
-                    "line": 379,
+                    "line": 414,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -991,8 +1040,8 @@
         },
         "call": {
             "name": "call",
-            "line": 400,
-            "short_desc": "Run Client execute_kw call with provided params.",
+            "line": 435,
+            "short_desc": "Run execute_kw call with provided params.",
             "long_desc": "",
             "hint": [
                 [
@@ -1009,7 +1058,7 @@
             "parameters": {
                 "params": {
                     "name": "params",
-                    "line": 400,
+                    "line": 435,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [],
@@ -1020,28 +1069,28 @@
                 }
             }
         },
-        "host": {
-            "name": "host",
-            "line": 433,
-            "short_desc": "Set url property",
+        "getClient": {
+            "name": "getClient",
+            "line": 454,
+            "short_desc": "Get a XML-RPC client",
             "long_desc": "",
             "hint": [
                 [
-                    "\\Edujugon\\Laradoo\\Odoo",
+                    "\\Ripcord_Client",
                     false
                 ]
             ],
-            "hint_desc": "$this",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
             "exceptions": [],
             "errors": [],
             "parameters": {
-                "url": {
-                    "name": "url",
-                    "line": 433,
-                    "short_desc": "Odoo API entry point.",
+                "endPoint": {
+                    "name": "endPoint",
+                    "line": 454,
+                    "short_desc": "",
                     "long_desc": null,
                     "hint": [
                         [
@@ -1056,18 +1105,51 @@
                 }
             }
         },
-        "username": {
-            "name": "username",
-            "line": 446,
-            "short_desc": "Set the username",
+        "host": {
+            "name": "host",
+            "line": 478,
+            "short_desc": "Set host",
             "long_desc": "",
             "hint": [
                 [
-                    "\\Edujugon\\Laradoo\\Odoo",
+                    "Edujugon\\Laradoo\\$this",
                     false
                 ]
             ],
-            "hint_desc": "$this",
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 1,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [
+                "The \"url.\" @param tag variable name is wrong (should be \"url\")"
+            ],
+            "parameters": {
+                "url": {
+                    "name": "url",
+                    "line": 478,
+                    "short_desc": null,
+                    "long_desc": null,
+                    "hint": null,
+                    "tags": [],
+                    "modifiers": null,
+                    "default": null,
+                    "is_by_ref": false
+                }
+            }
+        },
+        "username": {
+            "name": "username",
+            "line": 491,
+            "short_desc": "Set username",
+            "long_desc": "",
+            "hint": [
+                [
+                    "Edujugon\\Laradoo\\$this",
+                    false
+                ]
+            ],
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -1076,7 +1158,7 @@
             "parameters": {
                 "username": {
                     "name": "username",
-                    "line": 446,
+                    "line": 491,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -1094,16 +1176,16 @@
         },
         "password": {
             "name": "password",
-            "line": 459,
-            "short_desc": "Set the password.",
+            "line": 504,
+            "short_desc": "Set password.",
             "long_desc": "",
             "hint": [
                 [
-                    "\\Edujugon\\Laradoo\\Odoo",
+                    "Edujugon\\Laradoo\\$this",
                     false
                 ]
             ],
-            "hint_desc": "$this",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -1112,10 +1194,15 @@
             "parameters": {
                 "password": {
                     "name": "password",
-                    "line": 459,
+                    "line": 504,
                     "short_desc": "",
                     "long_desc": null,
-                    "hint": [],
+                    "hint": [
+                        [
+                            "string",
+                            false
+                        ]
+                    ],
                     "tags": [],
                     "modifiers": null,
                     "default": null,
@@ -1125,16 +1212,16 @@
         },
         "db": {
             "name": "db",
-            "line": 472,
-            "short_desc": "Set the db name.",
+            "line": 517,
+            "short_desc": "Set db name.",
             "long_desc": "",
             "hint": [
                 [
-                    "\\Edujugon\\Laradoo\\Odoo",
+                    "Edujugon\\Laradoo\\$this",
                     false
                 ]
             ],
-            "hint_desc": "$this",
+            "hint_desc": "",
             "tags": [],
             "modifiers": 1,
             "is_by_ref": "",
@@ -1143,7 +1230,7 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 472,
+                    "line": 517,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [
@@ -1161,8 +1248,8 @@
         },
         "apiSuffix": {
             "name": "apiSuffix",
-            "line": 485,
-            "short_desc": "Set the API suffix.",
+            "line": 530,
+            "short_desc": "Set API suffix.",
             "long_desc": "",
             "hint": [
                 [
@@ -1179,7 +1266,7 @@
             "parameters": {
                 "name": {
                     "name": "name",
-                    "line": 485,
+                    "line": 530,
                     "short_desc": "",
                     "long_desc": null,
                     "hint": [],
@@ -1190,33 +1277,14 @@
                 }
             }
         },
-        "getRipcord": {
-            "name": "getRipcord",
-            "line": 509,
-            "short_desc": "Get ripcord property",
-            "long_desc": "",
-            "hint": [
-                [
-                    "string",
-                    false
-                ]
-            ],
-            "hint_desc": "",
-            "tags": [],
-            "modifiers": 1,
-            "is_by_ref": "",
-            "exceptions": [],
-            "errors": [],
-            "parameters": []
-        },
         "getUid": {
             "name": "getUid",
-            "line": 519,
-            "short_desc": "Get the user identifier used in authenticated",
+            "line": 554,
+            "short_desc": "Get the Odoo user identifier",
             "long_desc": "",
             "hint": [
                 [
-                    "mixed",
+                    "integer",
                     false
                 ]
             ],
@@ -1230,7 +1298,7 @@
         },
         "getHost": {
             "name": "getHost",
-            "line": 529,
+            "line": 564,
             "short_desc": "Get host",
             "long_desc": "",
             "hint": [
@@ -1249,7 +1317,7 @@
         },
         "getDb": {
             "name": "getDb",
-            "line": 539,
+            "line": 574,
             "short_desc": "Get db",
             "long_desc": "",
             "hint": [
@@ -1268,12 +1336,12 @@
         },
         "getUserName": {
             "name": "getUserName",
-            "line": 548,
+            "line": 584,
             "short_desc": "Get username",
             "long_desc": "",
             "hint": [
                 [
-                    "mixed",
+                    "string",
                     false
                 ]
             ],
@@ -1287,12 +1355,12 @@
         },
         "getPassword": {
             "name": "getPassword",
-            "line": 557,
+            "line": 594,
             "short_desc": "Get password",
             "long_desc": "",
             "hint": [
                 [
-                    "mixed",
+                    "string",
                     false
                 ]
             ],
