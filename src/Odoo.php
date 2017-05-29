@@ -13,92 +13,120 @@ use Edujugon\Laradoo\Exceptions\OdooException;
 use Illuminate\Support\Collection;
 use ripcord;
 
-/**
- * Odoo Class
- * Used to connect with the odoo.com ERP.
- *
- */
+
 class Odoo
 {
 
     /**
-     * RipCord Class - XML-RPC library for PHP - https://github.com/poef/ripcord
+     * Common client
+     *
      * @var string
      */
-    protected $ripcord;
+    public $common;
 
     /**
-     * Common client
-     * @var
-     */
-    public $common;
-    /**
      * Object client
-     * @var
+     *
+     * @var string
      */
     public $object;
 
     /**
-     * User identifier used in authenticated calls instead of the login.
+     * Odoo User identifier
+     *
+     * @var integer
      */
     protected $uid;
 
 
+    /**
+     * DB Name
+     *
+     * @var string
+     */
     protected $db;
+
+    /**
+     * Host Name
+     *
+     * @var string
+     */
     protected $host;
+
+    /**
+     * DB Username
+     *
+     * @var string
+     */
     protected $username;
+
+
+    /**
+     * DB Password
+     *
+     * @var string
+     */
     protected $password;
 
     /**
      * API host suffix
+     *
+     * @var string
      */
     protected $suffix = '/xmlrpc/';
-    /**
-     * END API host suffix
-     */
-
-    /**
-     * EndPoints.
-     */
-    protected $commonEndPoint = 'common'; // meta-calls which don't require authentication
-    protected $objectEndPoint = 'object'; // call methods of odoo models
-    /**
-     * END API Entry Points.
-     */
 
 
     /**
-     * Query parameters
+     * Common endpoint
+     * meta-calls which don't require authentication
+     *
+     * @var string
      */
+    protected $commonEndPoint = 'common';
 
-    //Condition for the query.
-    protected $condition = [
-        'default' => [[]],
-        'value' => [[]]
-    ];
-
-    //offset and limit parameters are available to only retrieve a subset of all matched records
-    protected $offset = [
-        'default' => 0,
-        'value' => 0
-    ];
-    protected $limit = [
-        'default' => null,
-        'value' => null
-    ];
-
-    // fields to be requested.
-    protected $fields = [
-        'default' => [],
-        'value' => []
-    ];
+    /**
+     * Object endpoint
+     *
+     * @var string
+     */
+    protected $objectEndPoint = 'object';
 
 
+    /**
+     * Where Condition
+     *
+     * @var array
+     */
+    protected $condition;
+
+    /**
+     * Offset
+     *
+     * @var integer
+     */
+    protected $offset;
+
+    /**
+     * Limit
+     * available to only retrieve a subset of all matched records
+     *
+     * @var integer
+     */
+    protected $limit;
+
+    /**
+     * fields to be requested
+     *
+     * @var array
+     */
+    protected $fields;
+
+
+    /**
+     * Create a new Odoo instance
+     */
     function __construct()
     {
-        // Set Ripcord Instance
-        $this->ripcord = ripcord::class;
-
         $this->loadConfigData();
     }
 
@@ -109,12 +137,11 @@ class Odoo
      */
 
     /**
-     * Connect with Odoo.
-     * Set the uid
+     * Login to Odoo ERP.
      *
-     * @param null $db
-     * @param null $username
-     * @param null $password
+     * @param string $db
+     * @param string $username
+     * @param string $password
      * @param array $array
      * @return $this
      * @throws OdooException
@@ -134,13 +161,14 @@ class Odoo
 
     /**
      * Check access rights on a model.
+     * return true or a string with the error.
      *
-     * @param string $permission ('read','write','create','unlink')
+     * @param string $permission
      * @param string $model
      * @param bool $withExceptions
-     * @return Collection|string|true Collection |string ( error )| bool (true)
+     * @return string|true
      */
-    public function can(string $permission, string $model, bool $withExceptions = false)
+    public function can($permission, $model, $withExceptions = false)
     {
         if (!is_array($permission)) $permission = [$permission];
 
@@ -153,75 +181,67 @@ class Odoo
 
 
     /**
-     * Set condition for search query/method
+     * Set condition for search query
      *
      * @param string $field
      * @param string $operator
-     * @param $value
+     * @param string $value
      * @return $this
      */
-    public function where(string $field, string $operator, $value = null)
+    public function where($field, $operator, $value = null)
     {
-        if (func_num_args() === 2) {
+        if (func_num_args() === 2)
             $new = [$field, '=', $operator];
-        } else
+        else
             $new = func_get_args();
 
-        if (empty($this->condition['value']))
-            $this->condition['value'] = $this->odooArrayFormat($new);
-        else
-            $this->condition['value'][0][] = $new;
+        $this->condition[0][] = $new;
 
         return $this;
     }
 
 
     /**
-     * Set limit for your query.
-     * Also can pass offset to start from that value.
+     * Limit helps to only retrieve a subset of all matched records
+     * second parameter, offset to start from that value.
      *
      * @param int $limit
      * @param int $offset
-     * @return Odoo $this
+     * @return $this
      */
-    public function limit(int $limit, int $offset = 0)
+    public function limit($limit, $offset = 0)
     {
-        $this->limit['value'] = $limit;
-        $this->offset['value'] = $offset;
+        $this->limit = $limit;
+        $this->offset = $offset;
 
         return $this;
     }
 
     /**
-     * Set fields to be retrieved.
+     * Set fields to retrieve.
      *
-     * @param $fields
+     * @param array $fields
      * @return $this
      */
     public function fields($fields)
     {
-        $fields = is_array($fields) ? $fields : func_get_args();
-
-        $this->fields['value'] = $fields;
+        $this->fields = is_array($fields) ? $fields : func_get_args();
 
         return $this;
     }
 
     /**
-     * By default, retrieve the ids based on a previous passed condition.
-     * If no condition, all are retrieved.
+     * Get the ids of the models.
      *
-     * @param string $model Model name
-     * @return Collection List of ids.
+     * @param string $model
+     * @return Collection
      * @throws OdooException
      */
     public function search($model)
     {
         $method = 'search';
 
-        $this->validate($method, $model);
-
-        $condition = $this->condition['value'];
+        $condition = $this->condition ?: [[]];
 
         $params = $this->buildParams('limit', 'offset');
 
@@ -235,10 +255,9 @@ class Odoo
 
 
     /**
-     * Count the items in a model based on the condition.
-     * If no condition, count all.
+     * Count the items in a model's table.
      *
-     * @param $model
+     * @param string $model
      * @return integer
      * @throws OdooException
      */
@@ -246,9 +265,7 @@ class Odoo
     {
         $method = 'search_count';
 
-        $this->validate($method, $model);
-
-        $condition = $this->condition['value'];
+        $condition = $this->condition ?: [[]];
 
         $result = $this->call($model, $method, $condition);
 
@@ -260,22 +277,26 @@ class Odoo
     }
 
     /**
-     * Retrieve model's data
+     * Get a list of records.
      *
      * @param string $model
-     * @return \Illuminate\Support\Collection
+     * @return Collection
+     * @throws OdooException
      */
     public function get($model)
     {
         $method = 'read';
 
-        $this->validate($method, $model);
+        $ids = $this->search($model);
 
-        $ids = $this->search($model)->toArray();
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
+            throw new OdooException($ids);
 
         $params = $this->buildParams('fields');
 
-        $result = $this->call($model, $method, [$ids], $params);
+        $result = $this->call($model, $method, [$ids->toArray()], $params);
 
         //Reset params for future queries.
         $this->resetParams('fields');
@@ -285,12 +306,12 @@ class Odoo
 
 
     /**
-     * Retrieve the Odoo version.
+     * Retrieve Odoo version.
      * If key passed it returns the key value of the collection
      * No need authentication
      *
      * @param string $key
-     * @return Collection
+     * @return Collection|string
      */
     public function version($key = null)
     {
@@ -302,19 +323,16 @@ class Odoo
     }
 
     /**
-     * Retrieve all model structure fields.
+     * Get a collection of fields of a model table.
      *
-     * @param $model
-     * @param array $attributes
+     * @param string $model
      * @return Collection
      */
-    public function fieldsOf($model, $attributes = [])
+    public function fieldsOf($model)
     {
         $method = 'fields_get';
 
-        $this->validate($method, $model);
-
-        $result = $this->call($model, $method, [], $attributes);
+        $result = $this->call($model, $method, []);
 
 
         return $this->makeResponse($result);
@@ -323,15 +341,13 @@ class Odoo
     /**
      * Create a single record and return its database identifier.
      *
-     * @param $model
+     * @param string $model
      * @param array $data
-     * @return integer ID of the new record
+     * @return integer
      */
     public function create($model, array $data)
     {
         $method = 'create';
-
-        $this->validate($method, $model);
 
         $result = $this->call($model, $method, [$data]);
 
@@ -340,11 +356,12 @@ class Odoo
     }
 
     /**
-     * Update one or more records based on a previous passed condition.
+     * Update one or more records.
+     * returns true except when an error happened.
      *
-     * @param $model
+     * @param string $model
      * @param array $data
-     * @return true|string Always true except an error (string).
+     * @return true|string
      * @throws OdooException
      */
     public function update($model, array $data)
@@ -354,9 +371,12 @@ class Odoo
 
         $method = 'write';
 
-        $this->validate($method, $model);
-
         $ids = $this->search($model);
+
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
+            throw new OdooException($ids);
 
         $result = $this->call($model, $method, [$ids->toArray(), $data]);
 
@@ -365,18 +385,18 @@ class Odoo
 
     /**
      * Remove a record by Id or Ids.
+     * returns true except when an error happened.
      *
      * @param string $model
      * @param array|Collection|int $id
-     * @return true|string Always true except an error (string).
+     * @return true|string
      */
     public function deleteById($model, $id)
     {
-        if ($id instanceof Collection) $id = $id->toArray();
+        if ($id instanceof Collection)
+            $id = $id->toArray();
 
         $method = 'unlink';
-
-        $this->validate($method, $model);
 
         $result = $this->call($model, $method, [$id]);
 
@@ -384,39 +404,57 @@ class Odoo
     }
 
     /**
-     * Remove record/records based on conditions.
+     * Remove one or a group of records.
+     * returns true except when an error happened.
      *
      * @param string $model
-     * @return true|string Always true except an error (string).
+     * @return true|string
      * @throws OdooException
      */
     public function delete($model)
     {
         if ($this->hasNotProvided($this->condition))
-            return "To prevent updating all records you must provide at least one condition. Using where method would solve this.";
+            return "To prevent deleting all records you must provide at least one condition. Using where method would solve this.";
 
-        // Get ids.
         $ids = $this->search($model);
+
+        //If string it can't continue for retrieving models
+        //Throw exception with the error.
+        if (is_string($ids))
+            throw new OdooException($ids);
 
         return $this->deleteById($model, $ids);
     }
 
     /**
-     * Run Client execute_kw call with provided params.
+     * Run execute_kw call with provided params.
      *
      * @param $params
      * @return Collection
      */
-    function call($params)
+    public function call($params)
     {
+        //Prevent user forgetting connect with the ERP.
+        $this->autoConnect();
+
         $args = array_merge(
             [$this->db, $this->uid, $this->password],
             func_get_args()
         );
 
-        return collect(call_user_func_array([$this->object, 'execute_kw'], $args));
+        return collect(call_user_func_array([$this->object,'execute_kw'], $args));
     }
 
+    /**
+     * Get a XML-RPC client
+     *
+     * @param string $endPoint
+     * @return \Ripcord_Client
+     */
+    public function getClient($endPoint)
+    {
+        return ripcord::client($endPoint);
+    }
 
     /**
      * **********
@@ -432,12 +470,12 @@ class Odoo
      */
 
     /**
-     * Set url property
+     * Set host
      *
-     * @param string $url Odoo API entry point.
-     * @return Odoo $this
+     * @param string $url.
+     * @return $this
      */
-    function host($url)
+    public function host($url)
     {
         $this->host = $url;
 
@@ -445,12 +483,12 @@ class Odoo
     }
 
     /**
-     * Set the username
+     * Set username
      *
      * @param string $username
-     * @return Odoo $this
+     * @return $this
      */
-    function username($username)
+    public function username($username)
     {
         $this->username = $username;
 
@@ -458,12 +496,12 @@ class Odoo
     }
 
     /**
-     * Set the password.
+     * Set password.
      *
-     * @param $password
-     * @return Odoo $this
+     * @param string $password
+     * @return $this
      */
-    function password($password)
+    public function password($password)
     {
         $this->password = $password;
 
@@ -471,12 +509,12 @@ class Odoo
     }
 
     /**
-     * Set the db name.
+     * Set db name.
      *
      * @param string $name
-     * @return Odoo $this
+     * @return $this
      */
-    function db($name)
+    public function db($name)
     {
         $this->db = $name;
 
@@ -484,12 +522,12 @@ class Odoo
     }
 
     /**
-     * Set the API suffix.
+     * Set API suffix.
      *
      * @param $name
      * @return $this
      */
-    function apiSuffix($name)
+    public function apiSuffix($name)
     {
         $this->suffix = $name;
 
@@ -509,21 +547,11 @@ class Odoo
      */
 
     /**
-     * Get ripcord property
+     * Get the Odoo user identifier
      *
-     * @return string
+     * @return integer
      */
-    function getRipcord()
-    {
-        return $this->ripcord;
-    }
-
-    /**
-     * Get the user identifier used in authenticated
-     *
-     * @return mixed
-     */
-    function getUid()
+    public function getUid()
     {
         return $this->uid;
     }
@@ -533,7 +561,7 @@ class Odoo
      *
      * @return string
      */
-    function getHost()
+    public function getHost()
     {
         return $this->host;
     }
@@ -543,25 +571,27 @@ class Odoo
      *
      * @return string
      */
-    function getDb()
+    public function getDb()
     {
         return $this->db;
     }
 
     /**
      * Get username
-     * @return mixed
+     *
+     * @return string
      */
-    function getUserName()
+    public function getUserName()
     {
         return $this->username;
     }
 
     /**
      * Get password
-     * @return mixed
+     *
+     * @return string
      */
-    function getPassword()
+    public function getPassword()
     {
         return $this->password;
     }
@@ -626,24 +656,6 @@ class Odoo
 
     }
 
-
-    /**
-     * Create an understandable array for Odoo.
-     *
-     * @param array $list
-     * @return array
-     */
-    private function odooArrayFormat(array $list)
-    {
-        $array = [];
-
-        foreach ($list as $item) {
-
-            $array[0][0][] = $item;
-        }
-        return $array;
-    }
-
     /**
      * Reset extra data to base values
      *
@@ -655,7 +667,7 @@ class Odoo
 
         foreach ($keys as $key) {
             if (property_exists($this, $key))
-                $this->$key['value'] = $this->$key['default'];
+                $this->$key = null;
         }
     }
 
@@ -675,34 +687,10 @@ class Odoo
 
         foreach ($keys as $key) {
             if (property_exists($this, $key))
-                $array = array_merge($array, [$key => $this->$key['value']]);
+                $array = array_merge($array, [$key => $this->$key]);
         }
 
         return $array;
-    }
-
-    /**
-     * Create XML-RPC client
-     *
-     * @param $endPoint
-     * @return \Ripcord_Client
-     */
-    private function getClient($endPoint)
-    {
-        return ripcord::client($endPoint);
-    }
-
-    /**
-     * Validate permission.
-     *
-     * @param $method
-     * @param $model
-     * @throws OdooException
-     */
-    private function validate($method, $model)
-    {
-        if ($this->can($method, $model) !== true)
-            throw new OdooException("You don't have '$method' permission in '$model'");
     }
 
     /**
@@ -735,11 +723,15 @@ class Odoo
     private function loadConfigData()
     {
         //Load config data
-        $config = eConfig();
+        $config = laradooConfig();
 
-        //Set config data
-        $this->suffix = array_key_exists('api-suffix', $config) ? eAddCharacter($config['api-suffix'], '/') : $this->suffix;
+
+        $this->suffix = array_key_exists('api-suffix', $config) ? $config['api-suffix'] : $this->suffix;
+        $this->suffix = laradooAddCharacter($this->suffix, '/');
+
         $this->host = array_key_exists('host', $config) ? $config['host'] : $this->host;
+        $this->host = laradooRemoveCharacter($this->host, '/');
+
         $this->db = array_key_exists('db', $config) ? $config['db'] : $this->db;
         $this->username = array_key_exists('username', $config) ? $config['username'] : $this->username;
         $this->password = array_key_exists('password', $config) ? $config['password'] : $this->password;
@@ -753,6 +745,14 @@ class Odoo
      */
     private function hasNotProvided($param)
     {
-        return $param['default'] === $param['value'];
+        return !$param;
+    }
+
+    /**
+     * Auto connect with the ERP if there isn't uid.
+     */
+    private function autoConnect()
+    {
+        if (!$this->uid) $this->connect();
     }
 }

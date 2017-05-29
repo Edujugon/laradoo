@@ -1,6 +1,14 @@
 # Laradoo
 
-Odoo ERP API for Laravel. [odoo.com](https://www.odoo.com)
+<img src="https://raw.githubusercontent.com/Edujugon/laradoo/master/docs/assets/laradoo.png">
+
+Odoo ERP API for Laravel. [Odoo website](https://www.odoo.com)
+
+[![Build Status](https://api.travis-ci.org/Edujugon/laradoo.svg)](https://api.travis-ci.org/Edujugon/laradoo)
+[![Total Downloads](https://poser.pugx.org/edujugon/laradoo/downloads)](https://packagist.org/packages/edujugon/laradoo)
+[![Latest Stable Version](https://poser.pugx.org/edujugon/laradoo/v/stable)](https://packagist.org/packages/edujugon/laradoo)
+[![License](https://poser.pugx.org/edujugon/laradoo/license)](https://packagist.org/packages/edujugon/laradoo)
+
 
 ## Installation
 
@@ -156,4 +164,20 @@ $updated = $odoo->where('name', 'John Odoo')
             ->update('res.partner',['name' => 'John Odoo Odoo','email' => 'Johndoe@odoo.com']);
 ```
 
-Be aware that all `delete` and `update` methods always returns `true` except if there was an error.
+Notice that all `delete` and `update` methods always returns `true` except if there was an error.
+
+`call` method is also available for those who want to set a custom API call:
+
+```
+$odoo->call('res.partner', 'search',[
+        [
+            ['is_company', '=', true],
+            ['customer', '=', true]
+        ]
+    ],[
+        'offset'=>1,
+        'limit'=>5
+    ]);
+```
+
+##  [Full API list](https://edujugon.github.io/laradoo/build/master/Edujugon/Laradoo/Odoo.html)

@@ -34,8 +34,7 @@ class OdooTest extends TestCase
     protected function setDemoCredentials()
     {
 
-        $library = $this->odoo->getRipcord();
-        $info = $library::client('https://demo.odoo.com/start')->start();
+        $info = $this->odoo->getClient('https://demo.odoo.com/start')->start();
 
         list($this->host, $this->db, $this->username, $this->password) =
             array($info['host'], $info['database'], $info['user'], $info['password']);
@@ -133,8 +132,8 @@ class OdooTest extends TestCase
             ->fields('name')
             ->get('res.partner');
 
-
-        $this->assertFalse($models->has('email'));
+        $this->assertArrayNotHasKey('email',$models->first());
+        $this->assertArrayHasKey('name',$models->first());
         $this->assertInstanceOf(\Illuminate\Support\Collection::class, $models);
         $this->assertArrayNotHasKey('faultCode',$models);
         $this->assertCount(3, $models);
@@ -157,6 +156,25 @@ class OdooTest extends TestCase
             ->create('res.partner',['name' => 'John Odoo']);
 
         $this->assertInternalType('integer',$id);
+    }
+
+    /** @test */
+    public function delete_a_record()
+    {
+        $id = $this->odoo
+            ->create('res.partner',['name' => 'John Odoo']);
+
+        $this->assertInternalType('integer',$id);
+
+        $result = $this->odoo->deleteById('res.partner',$id);
+
+        $ids = $this->odoo
+            ->where('id', $id)
+            ->search('res.partner');
+
+        $this->assertEmpty($ids);
+
+        $this->assertInternalType('boolean',$result);
     }
 
     /** @test */
@@ -213,5 +231,21 @@ class OdooTest extends TestCase
 
         $this->assertTrue($result);
 
+    }
+
+    /** @test */
+    public function using_call_directly()
+    {
+        $ids = $this->odoo->call('res.partner', 'search',[
+            [
+                ['is_company', '=', true],
+                ['customer', '=', true]
+            ]
+        ],[
+            'offset'=>1,
+            'limit'=>5
+        ]);
+
+        $this->assertCount(5,$ids);
     }
 }
