@@ -1,0 +1,45 @@
+{
+    "name": "Edujugon\\Laradoo\\Facades\\Odoo",
+    "line": 5,
+    "short_desc": "",
+    "long_desc": "",
+    "hint": null,
+    "tags": [],
+    "namespace": "Edujugon\\Laradoo\\Facades",
+    "file": "\/Users\/Edujugon\/Code\/Documentation\/Documentator\/laradoo\/..\/..\/..\/OpenSource\/laradoo\/src\/Facades\/Odoo.php",
+    "relative_file": "\/src\/Facades\/Odoo.php",
+    "hash": "4c992b8bfa9b3c7e60defe1104547b57898a48af",
+    "parent": "Illuminate\\Support\\Facades\\Facade",
+    "modifiers": null,
+    "is_trait": false,
+    "is_interface": false,
+    "aliases": {
+        "Facade": "Illuminate\\Support\\Facades\\Facade"
+    },
+    "errors": [],
+    "interfaces": [],
+    "traits": [],
+    "properties": [],
+    "methods": {
+        "getFacadeAccessor": {
+            "name": "getFacadeAccessor",
+            "line": 12,
+            "short_desc": "Get the registered name of the component.",
+            "long_desc": "",
+            "hint": [
+                [
+                    "string",
+                    false
+                ]
+            ],
+            "hint_desc": "",
+            "tags": [],
+            "modifiers": 10,
+            "is_by_ref": "",
+            "exceptions": [],
+            "errors": [],
+            "parameters": []
+        }
+    },
+    "constants": []
+}
