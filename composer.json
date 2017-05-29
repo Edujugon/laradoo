@@ -20,7 +20,6 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "php": "^7.0",
         "illuminate/support": "^5.1"
     },
     "require-dev": {
