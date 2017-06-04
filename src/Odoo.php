@@ -647,7 +647,7 @@ class Odoo
      * @return string
      * @throws OdooException OdooException
      */
-    private function setApiEndPoint(string $endPoint)
+    private function setApiEndPoint($endPoint)
     {
         if (empty($this->host))
             throw new OdooException('You must provide the odoo host by host setter method');
@@ -704,7 +704,7 @@ class Odoo
      * @param null $cast Cast returned data based on this param.
      * @return mixed
      */
-    private function makeResponse(Collection $result, $key = null, $cast = null)
+    private function makeResponse($result, $key = null, $cast = null)
     {
         if (array_key_exists('faultCode', $result->toArray()))
             return $result['faultCode'];
