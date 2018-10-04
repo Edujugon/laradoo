@@ -77,8 +77,9 @@ $this->odoo = $this->odoo
             ->username('my-user-name')
             ->password('my-password)
             ->db('my-db')
-            ->host('my-host.com')
+            ->host('https://my-host.com')
             ->connect();
+// Note: `host` should contain 'http://' or 'https://'
 ```
 
 
