@@ -1,12 +1,10 @@
 <?php
 
-
 use Edujugon\Laradoo\Odoo;
 use PHPUnit\Framework\TestCase;
 
 class OdooTest extends TestCase
 {
-
 
     protected $odoo;
 
