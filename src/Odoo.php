@@ -444,6 +444,17 @@ class Odoo
 
         return collect(call_user_func_array([$this->object,'execute_kw'], $args));
     }
+    
+    
+    public function call_wf($params)
+    {
+        $this->autoConnect();
+        $args = array_merge(
+            [$this->db, $this->uid, $this->password],
+            func_get_args()
+        );
+        return collect(call_user_func_array([$this->object,'exec_workflow'], $args));
+    }
 
     /**
      * Get a XML-RPC client
