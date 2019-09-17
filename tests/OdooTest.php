@@ -67,7 +67,7 @@ class OdooTest extends TestCase
     {
         $version = $this->odoo->version('server_version');
 
-        $this->assertIsString($version);
+        $this->assertEquals('string', gettype($version));
     }
 
 
@@ -75,7 +75,7 @@ class OdooTest extends TestCase
     /** @test */
     public function test_common_connection_odoo()
     {
-        $this->assertIsInt($this->odoo->getUid());
+        $this->assertEquals('integer', gettype($this->odoo->getUid()));
 
     }
 
@@ -105,7 +105,7 @@ class OdooTest extends TestCase
     {
         $amount = $this->odoo->count('res.partner');
 
-        $this->assertIsInt($amount);
+        $this->assertEquals('integer', gettype($amount));
     }
 
     /** @test */
@@ -153,7 +153,7 @@ class OdooTest extends TestCase
         $id = $this->odoo
             ->create('res.partner',['name' => 'John Odoo']);
 
-        $this->assertIsInt($id);
+        $this->assertEquals('integer', gettype($id));
     }
 
     /** @test */
@@ -162,7 +162,7 @@ class OdooTest extends TestCase
         $id = $this->odoo
             ->create('res.partner',['name' => 'John Odoo']);
 
-        $this->assertIsInt($id);
+        $this->assertEquals('integer', gettype($id));
 
         $result = $this->odoo->deleteById('res.partner',$id);
 
@@ -172,7 +172,7 @@ class OdooTest extends TestCase
 
         $this->assertEmpty($ids);
 
-        $this->assertIsBool($result);
+        $this->assertEquals('boolean', gettype($result));
     }
 
     /** @test */
@@ -195,7 +195,7 @@ class OdooTest extends TestCase
 
         $this->assertEmpty($ids);
 
-        $this->assertIsBool($result);
+        $this->assertEquals('boolean', gettype($result));
     }
 
     /** @test */
@@ -208,7 +208,7 @@ class OdooTest extends TestCase
         $result = $this->odoo->where('name', 'John Odoo')
             ->delete('res.partner');
 
-        $this->assertIsBool($result);
+        $this->assertEquals('boolean', gettype($result));
     }
 
     /** @test */
