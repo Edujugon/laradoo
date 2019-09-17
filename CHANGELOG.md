@@ -2,9 +2,9 @@
 
 ## V1.1.3
 
-#### Fix
+#### Compatibility upgrade
 
-Renamed global functions name to prevent issues when working with other packages.
+Added support for Laravel 6.
 
 
 ## V1.0.7
