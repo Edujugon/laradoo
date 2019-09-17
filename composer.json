@@ -20,9 +20,10 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "illuminate/support": "^5.1"
+        "php": "^5.5|^7.0",
+        "illuminate/support": "^5.1|^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": "^8.0"
     }
 }

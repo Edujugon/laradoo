@@ -1,6 +1,7 @@
 <?php
 
 use Edujugon\Laradoo\Odoo;
+use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 
 class OdooTest extends TestCase
@@ -44,7 +45,6 @@ class OdooTest extends TestCase
      */
     protected function createOdooInstance()
     {
-        //dd('url: ' . $this->host . ' db:' . $this->db . ' user:' . $this->username . ' pass:' . $this->password);
         $this->odoo = $this->odoo
             ->username($this->username)
             ->password($this->password)
@@ -59,7 +59,7 @@ class OdooTest extends TestCase
     {
         $version = $this->odoo->version();
 
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $version);
+        $this->assertInstanceOf(Collection::class, $version);
     }
 
     /** @test */
@@ -67,7 +67,7 @@ class OdooTest extends TestCase
     {
         $version = $this->odoo->version('server_version');
 
-        $this->assertInternalType('string',$version);
+        $this->assertIsString($version);
     }
 
 
@@ -75,7 +75,7 @@ class OdooTest extends TestCase
     /** @test */
     public function test_common_connection_odoo()
     {
-        $this->assertInternalType('integer', $this->odoo->getUid());
+        $this->assertIsInt($this->odoo->getUid());
 
     }
 
@@ -96,7 +96,7 @@ class OdooTest extends TestCase
             ->search('res.partner');
 
         $this->assertArrayNotHasKey('faultCode',$ids);
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $ids);
+        $this->assertInstanceOf(Collection::class, $ids);
         $this->assertNotEmpty($ids);
     }
 
@@ -105,7 +105,7 @@ class OdooTest extends TestCase
     {
         $amount = $this->odoo->count('res.partner');
 
-        $this->assertInternalType('integer', $amount);
+        $this->assertIsInt($amount);
     }
 
     /** @test */
@@ -116,7 +116,7 @@ class OdooTest extends TestCase
             ->limit(3)
             ->search('res.partner');
 
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $ids);
+        $this->assertInstanceOf(Collection::class, $ids);
         $this->assertArrayNotHasKey('faultCode',$ids);
         $this->assertCount(3, $ids);
     }
@@ -132,7 +132,7 @@ class OdooTest extends TestCase
 
         $this->assertArrayNotHasKey('email',$models->first());
         $this->assertArrayHasKey('name',$models->first());
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class, $models);
+        $this->assertInstanceOf(Collection::class, $models);
         $this->assertArrayNotHasKey('faultCode',$models);
         $this->assertCount(3, $models);
 
@@ -143,7 +143,7 @@ class OdooTest extends TestCase
     {
         $fields = $this->odoo->fieldsOf('res.partner');
 
-        $this->assertInstanceOf(\Illuminate\Support\Collection::class,$fields);
+        $this->assertInstanceOf(Collection::class, $fields);
         $this->assertArrayNotHasKey('faultCode',$fields);
     }
 
@@ -153,7 +153,7 @@ class OdooTest extends TestCase
         $id = $this->odoo
             ->create('res.partner',['name' => 'John Odoo']);
 
-        $this->assertInternalType('integer',$id);
+        $this->assertIsInt($id);
     }
 
     /** @test */
@@ -162,7 +162,7 @@ class OdooTest extends TestCase
         $id = $this->odoo
             ->create('res.partner',['name' => 'John Odoo']);
 
-        $this->assertInternalType('integer',$id);
+        $this->assertIsInt($id);
 
         $result = $this->odoo->deleteById('res.partner',$id);
 
@@ -172,7 +172,7 @@ class OdooTest extends TestCase
 
         $this->assertEmpty($ids);
 
-        $this->assertInternalType('boolean',$result);
+        $this->assertIsBool($result);
     }
 
     /** @test */
@@ -195,7 +195,7 @@ class OdooTest extends TestCase
 
         $this->assertEmpty($ids);
 
-        $this->assertInternalType('boolean',$result);
+        $this->assertIsBool($result);
     }
 
     /** @test */
@@ -208,7 +208,7 @@ class OdooTest extends TestCase
         $result = $this->odoo->where('name', 'John Odoo')
             ->delete('res.partner');
 
-        $this->assertInternalType('boolean',$result);
+        $this->assertIsBool($result);
     }
 
     /** @test */
