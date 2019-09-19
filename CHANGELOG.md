@@ -7,12 +7,20 @@
 Added support for Laravel 6.
 
 
+## V1.0.8
+
+#### Compatibility upgrade
+
+Renamed global functions name to prevent issues when working with other packages.
+
+
 ## V1.0.7
 
 #### Enhancement
 
 Added OdooException in get, update and delete methods.
 All those methods depend on another method's result to return a correct value.
+
 
 ## V1.0.6
 
