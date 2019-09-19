@@ -9,6 +9,12 @@ Odoo ERP API for Laravel. [Odoo website](https://www.odoo.com)
 [![Latest Stable Version](https://poser.pugx.org/edujugon/laradoo/v/stable)](https://packagist.org/packages/edujugon/laradoo)
 [![License](https://poser.pugx.org/edujugon/laradoo/license)](https://packagist.org/packages/edujugon/laradoo)
 
+## Compatibility
+
+| Laravel version | PHP version | Package version |
+|---|---|---|
+| ^5.1 | ^5.5 | ^V1.1 |
+| ^5.1 | ^5.6 | ^V1.2 |
 
 ## Installation
 

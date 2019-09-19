@@ -1,6 +1,6 @@
 #   ChangeLog
 
-## V1.1.3
+## V1.2.0
 
 #### Compatibility upgrade
 
