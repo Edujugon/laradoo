@@ -170,7 +170,7 @@ class OdooTest extends TestCase
             ->where('id', $id)
             ->search('res.partner');
 
-        $this->assertEmpty($ids);
+        $this->assertTrue($ids->isEmpty());
 
         $this->assertEquals('boolean', gettype($result));
     }
@@ -193,7 +193,7 @@ class OdooTest extends TestCase
             ->where('name', 'John Odoo')
             ->search('res.partner');
 
-        $this->assertEmpty($ids);
+        $this->assertTrue($ids->isEmpty());
 
         $this->assertEquals('boolean', gettype($result));
     }
