@@ -9,7 +9,7 @@ Added support for Laravel 6.
 
 ## V1.0.8
 
-#### Compatibility upgrade
+#### Fix
 
 Renamed global functions name to prevent issues when working with other packages.
 
