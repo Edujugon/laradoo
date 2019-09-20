@@ -1,10 +1,11 @@
 #   ChangeLog
 
-## V1.2.0
+## V2.0.0
 
 #### Compatibility upgrade
 
-Added support for Laravel 6.
+Added support for Laravel 6.  
+Dropped support for PHP 5.5.
 
 
 ## V1.0.8
