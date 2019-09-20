@@ -1,5 +1,13 @@
 #   ChangeLog
 
+## V2.0.0
+
+#### Compatibility upgrade
+
+Added support for Laravel 6.  
+Dropped support for PHP 5.5.
+
+
 ## V1.0.8
 
 #### Fix
@@ -13,6 +21,7 @@ Renamed global functions name to prevent issues when working with other packages
 
 Added OdooException in get, update and delete methods.
 All those methods depend on another method's result to return a correct value.
+
 
 ## V1.0.6
 
