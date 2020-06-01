@@ -695,19 +695,21 @@ class Odoo
 
     /**
      * Prepare the api response.
-     * If there is a faultCode then return its value.
+     * If there is a faultCode throw an exception.
      * If key passed, returns the value of that key.
      * Otherwise return the provided data.
      *
      * @param Collection $result
      * @param string $key
      * @param null $cast Cast returned data based on this param.
+     * @throws OdooException
      * @return mixed
      */
     private function makeResponse($result, $key = null, $cast = null)
     {
-        if (array_key_exists('faultCode', $result->toArray()))
-            return $result['faultCode'];
+        if (array_key_exists('faultCode', $result->toArray())) {
+            throw new OdooException($result['faultString']);
+        }
 
         if (!is_null($key) && array_key_exists($key, $result->toArray()))
             $result = $result->get($key);
