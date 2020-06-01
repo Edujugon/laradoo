@@ -482,12 +482,14 @@ class  Ripcord_Transport_Stream implements Ripcord_Transport
 		);
 		$context = stream_context_create( $options );
 		$result  = @file_get_contents( $url, false, $context );
-		$this->responseHeaders = $http_response_header;
+
 		if ( !$result )
 		{
 			throw new Ripcord_TransportException( 'Could not access ' . $url, 
 				ripcord::cannotAccessURL );
 		}
+
+		$this->responseHeaders = $http_response_header;
 		return $result;
 	}
 }
