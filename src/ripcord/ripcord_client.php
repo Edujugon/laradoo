@@ -470,7 +470,7 @@ class  Ripcord_Transport_Stream implements Ripcord_Transport
 	 */
 	public function post( $url, $request ) 
 	{
-		$options = array_merge( 
+		$options = array_merge_recursive( 
 			$this->options, 
 			array( 
 				'http' => array(
