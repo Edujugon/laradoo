@@ -477,7 +477,11 @@ class  Ripcord_Transport_Stream implements Ripcord_Transport
 					'method' => "POST",
 					'header' => "Content-Type: text/xml",
 					'content' => $request
-				) 
+				),
+				"ssl" => array(
+					"verify_peer" => false,
+					"verify_peer_name" => false,
+				),
 			) 
 		);
 		$context = stream_context_create( $options );
