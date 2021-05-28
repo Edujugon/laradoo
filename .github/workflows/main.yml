@@ -52,8 +52,6 @@ jobs:
 
   security-check:
     runs-on: ubuntu-latest
-    env:
-      working-directory: ./
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v2
@@ -62,5 +60,3 @@ jobs:
           path: ~/.symfony/cache
           key: db
       - uses: symfonycorp/security-checker-action@v2
-        with:
-          lock: ${{env.working-directory}}/composer.lock
