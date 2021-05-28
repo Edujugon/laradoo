@@ -12,7 +12,8 @@ Odoo ERP API for Laravel. [Odoo website](https://www.odoo.com)
 ## Compatibility
 
 | Laravel version | PHP version | Package version |
-|---|---|---|
+|------|------|-------|
+| ^8.0 | ^7.3 | ^V3.0 |
 | ^5.1 | ^5.6 | ^V2.0 |
 | ^5.1 | ^5.5 | ^V1.1 |
 
