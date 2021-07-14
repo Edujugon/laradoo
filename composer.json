@@ -1,7 +1,12 @@
 {
     "name": "edujugon/laradoo",
     "description": "Odoo ERP API for Laravel",
-    "keywords": ["odoo","laravel","erp","package"],
+    "keywords": [
+        "odoo",
+        "laravel",
+        "erp",
+        "package"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -9,21 +14,24 @@
             "email": "edujugon@gmail.com"
         }
     ],
-    "autoload": {
-      "psr-4": {
-        "Edujugon\\Laradoo\\": "src/"
-      },
-      "files": [
-          "src/Support/helpers.php"
-      ],
-      "classmap": ["src/ripcord"]
-    },
-    "minimum-stability": "dev",
     "require": {
-        "php": "^5.6||^7.0",
-        "illuminate/support": "^5.1||^6.0||^7.0||^8.0"
+        "php": "^7.3 || ^8.0",
+        "ext-xmlrpc": "*",
+        "illuminate/support": "^7.0 || ^8.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8||^8.0"
-    }
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Edujugon\\Laradoo\\": "src/"
+        },
+        "classmap": [
+            "src/ripcord"
+        ],
+        "files": [
+            "src/Support/helpers.php"
+        ]
+    },
+    "minimum-stability": "dev"
 }

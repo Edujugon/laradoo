@@ -1,0 +1,58 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: [
+          '7.3',
+          '7.4',
+          '8.0'
+        ]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+        extensions: mbstring, intl, xmlrpc
+        coverage: xdebug
+    - name: Get composer cache directory
+      id: composer-cache
+      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+    - name: Cache composer dependencies
+      uses: actions/cache@v2
+      with:
+        path: ${{ steps.composer-cache.outputs.dir }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+        restore-keys: ${{ runner.os }}-composer-
+    - name: Install Composer dependencies
+      run: composer install --no-ansi --no-interaction --no-progress --optimize-autoloader
+    - name: Setup Problem Matchers for PHPUnit
+      run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+    - name: Test with phpunit
+      run: vendor/bin/phpunit
+
+  composer-normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Composer normalize
+        uses: localheinz/composer-normalize-action@0.5.2
+
+  security-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        id: cache-db
+        with:
+          path: ~/.symfony/cache
+          key: db
+      - uses: symfonycorp/security-checker-action@v2
