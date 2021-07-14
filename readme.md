@@ -4,7 +4,7 @@
 
 Odoo ERP API for Laravel. [Odoo website](https://www.odoo.com)
 
-[![Build Status](https://github.com/realeflow/publy/workflows/CI/badge.svg)](https://github.com/Edujugon/laradoo/actions)
+[![Build Status](https://github.com/edujugon/laradoo/workflows/CI/badge.svg)](https://github.com/Edujugon/laradoo/actions)
 [![Total Downloads](https://poser.pugx.org/edujugon/laradoo/downloads)](https://packagist.org/packages/edujugon/laradoo)
 [![Latest Stable Version](https://poser.pugx.org/edujugon/laradoo/v/stable)](https://packagist.org/packages/edujugon/laradoo)
 [![License](https://poser.pugx.org/edujugon/laradoo/license)](https://packagist.org/packages/edujugon/laradoo)
