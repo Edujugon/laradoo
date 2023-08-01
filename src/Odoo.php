@@ -107,6 +107,13 @@ class Odoo
     protected $offset;
 
     /**
+     * order
+     * available to retrieve records by order wise
+     *
+     */
+    protected $order;
+
+    /**
      * Limit
      * available to only retrieve a subset of all matched records
      *
@@ -218,6 +225,19 @@ class Odoo
     }
 
     /**
+     * order helps to retrieve records by order wise
+     * E.g ->order('id', 'DESC')
+     * 
+     * @param string $order
+     */
+    public function order($order)
+    {
+        $this->order = $order;
+        return $this;
+    }
+
+
+    /**
      * Set fields to retrieve.
      *
      * @param array $fields
@@ -243,12 +263,12 @@ class Odoo
 
         $condition = $this->condition ?: [[]];
 
-        $params = $this->buildParams('limit', 'offset');
+        $params = $this->buildParams('limit', 'offset','order');
 
         $result = $this->call($model, $method, $condition, $params);
 
         //Reset params for future queries.
-        $this->resetParams('limit', 'offset', 'condition');
+        $this->resetParams('limit', 'offset', 'condition','order');
 
         return $this->makeResponse($result);
     }
