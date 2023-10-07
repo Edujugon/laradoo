@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Project: Laradoo.
  * User: Edujugon
@@ -121,6 +122,13 @@ class Odoo
      */
     protected $fields;
 
+    /**
+     * request context
+     *
+     * @var array
+     */
+    protected $context;
+
 
     /**
      * Create a new Odoo instance
@@ -172,9 +180,15 @@ class Odoo
     {
         if (!is_array($permission)) $permission = [$permission];
 
-        $can = collect($this->object->execute_kw($this->db, $this->uid, $this->password,
-            $model, 'check_access_rights',
-            $permission, array('raise_exception' => $withExceptions)));
+        $can = collect($this->object->execute_kw(
+            $this->db,
+            $this->uid,
+            $this->password,
+            $model,
+            'check_access_rights',
+            $permission,
+            array('raise_exception' => $withExceptions)
+        ));
 
         return $this->makeResponse($can, 0, 'boolean');
     }
@@ -231,6 +245,19 @@ class Odoo
     }
 
     /**
+     * Set request context.
+     *
+     * @param array $context
+     * @return $this
+     */
+    public function context($context)
+    {
+        $this->context = is_array($context) ? $context : func_get_args();
+
+        return $this;
+    }
+
+    /**
      * Get the ids of the models.
      *
      * @param string $model
@@ -273,7 +300,6 @@ class Odoo
         $this->resetParams('condition');
 
         return $this->makeResponse($result, 0);
-
     }
 
     /**
@@ -294,12 +320,12 @@ class Odoo
         if (is_string($ids))
             throw new OdooException($ids);
 
-        $params = $this->buildParams('fields');
+        $params = $this->buildParams('fields', 'context');
 
         $result = $this->call($model, $method, [$ids->toArray()], $params);
 
         //Reset params for future queries.
-        $this->resetParams('fields');
+        $this->resetParams('fields', 'context');
 
         return $this->makeResponse($result);
     }
@@ -442,7 +468,7 @@ class Odoo
             func_get_args()
         );
 
-        return collect(call_user_func_array([$this->object,'execute_kw'], $args));
+        return collect(call_user_func_array([$this->object, 'execute_kw'], $args));
     }
 
     /**
@@ -636,7 +662,6 @@ class Odoo
             else
                 throw new OdooException('Unsuccessful Authorization');
         }
-
     }
 
 
@@ -653,7 +678,6 @@ class Odoo
             throw new OdooException('You must provide the odoo host by host setter method');
 
         return $this->host . $this->suffix . $endPoint;
-
     }
 
     /**
