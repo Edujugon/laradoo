@@ -708,7 +708,7 @@ class Odoo
     private function makeResponse($result, $key = null, $cast = null)
     {
         if (array_key_exists('faultCode', $result->toArray())) {
-            throw new OdooException($result['faultString']);
+            throw new OdooException($result['faultCode'] . "\r\n" . $result['faultString']);
         }
 
         if (!is_null($key) && array_key_exists($key, $result->toArray()))
